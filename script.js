@@ -46,26 +46,41 @@ const flowApy = document.querySelector("#flow-apy");
 const principalOutput = document.querySelector("#principal-output");
 const portfolioOutput = document.querySelector("#portfolio-output");
 const destinationCopy = document.querySelector("#destination-copy");
+const amountMin = Math.max(
+  Number(amountInput?.min || 0.01),
+  Number(rangeInput?.min || 0.01),
+);
+const amountMax = Math.max(
+  Number(amountInput?.max || 500),
+  Number(rangeInput?.max || 500),
+);
 
 function clampAmount(value) {
   if (!Number.isFinite(value)) {
     return state.amount;
   }
 
-  return Math.min(Math.max(value, 0.01), 500);
+  return Math.min(Math.max(value, amountMin), amountMax);
 }
 
 function setSliderProgress() {
   const min = Number(rangeInput.min);
   const max = Number(rangeInput.max);
-  const progress = ((state.amount - min) / (max - min)) * 100;
+  const progress = Math.min(Math.max(((state.amount - min) / (max - min)) * 100, 0), 100);
   rangeInput.style.setProperty("--slider-progress", `${progress}%`);
 }
 
-function nextThreshold(amount, threshold) {
-  const multiple = Math.ceil(amount / threshold);
-  const rounded = multiple * threshold;
-  return Number((rounded - amount).toFixed(2));
+function getRoundUpPlan(amount, threshold) {
+  const quotient = amount / threshold;
+  const isExactMultiple = Math.abs(quotient - Math.round(quotient)) < 1e-9;
+  const multiple = isExactMultiple ? Math.round(quotient) + 1 : Math.ceil(quotient);
+  const roundedTarget = Number((multiple * threshold).toFixed(2));
+  const delta = Number((roundedTarget - amount).toFixed(2));
+
+  return {
+    delta,
+    roundedTarget,
+  };
 }
 
 function futureValueWithDailyContributions(dailyContribution, apy) {
@@ -131,7 +146,7 @@ function renderSimulator() {
   const threshold = state.threshold;
   const destination = destinations[state.destination];
 
-  const delta = nextThreshold(amount, threshold);
+  const { delta, roundedTarget } = getRoundUpPlan(amount, threshold);
   const dailyContribution = delta * state.transactionsPerDay;
   const monthlyContribution = dailyContribution * 30;
   const annualContribution = dailyContribution * 365;
@@ -140,7 +155,6 @@ function renderSimulator() {
     destination.apy,
   );
   const annualYield = portfolioValue - annualContribution;
-  const roundedTarget = amount + delta;
 
   amountInput.value = amount.toFixed(2);
   rangeInput.value = amount.toFixed(2);
@@ -301,6 +315,8 @@ function createHeroParticles() {
 
   const context = canvas.getContext("2d");
   const particles = [];
+  const rootStyles = getComputedStyle(document.documentElement);
+  const lineColor = rootStyles.getPropertyValue("--purple").trim() || "#1a1fb8";
   let width = 0;
   let height = 0;
   let animationFrame;
@@ -350,7 +366,7 @@ function createHeroParticles() {
       }
 
       context.beginPath();
-      context.fillStyle = `rgba(245, 176, 0, ${particle.alpha})`;
+      context.fillStyle = `rgba(0, 0, 0, ${particle.alpha * 0.26})`;
       context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
       context.fill();
 
@@ -362,7 +378,7 @@ function createHeroParticles() {
 
         if (distance < 110) {
           context.beginPath();
-          context.strokeStyle = `rgba(6, 182, 212, ${0.11 - distance / 1200})`;
+          context.strokeStyle = hexToRgba(lineColor, 0.1 - distance / 1400);
           context.lineWidth = 1;
           context.moveTo(particle.x, particle.y);
           context.lineTo(other.x, other.y);
@@ -382,6 +398,20 @@ function createHeroParticles() {
     resizeCanvas();
     draw();
   });
+}
+
+function hexToRgba(hex, alpha) {
+  const normalized = hex.replace("#", "").trim();
+
+  if (normalized.length !== 6) {
+    return `rgba(26, 31, 184, ${Math.max(alpha, 0)})`;
+  }
+
+  const r = Number.parseInt(normalized.slice(0, 2), 16);
+  const g = Number.parseInt(normalized.slice(2, 4), 16);
+  const b = Number.parseInt(normalized.slice(4, 6), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${Math.max(alpha, 0)})`;
 }
 
 renderSimulator();

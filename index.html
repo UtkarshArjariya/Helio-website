@@ -41,7 +41,7 @@
           <a href="#waitlist">Waitlist</a>
         </nav>
 
-        <a class="nav-cta" href="#waitlist">Join Waitlist</a>
+        <a class="nav-cta" href="#waitlist">Download Beta</a>
       </div>
     </header>
 
@@ -60,17 +60,22 @@
               <span class="headline-accent">Your money grows up.</span>
             </h1>
             <p class="hero-subhead reveal">
-              Helio automatically invests your spare change on every Solana
-              transaction into staking, tokenized gold, or index tokens with
-              zero manual work.
+              The Solana wallet that rounds up every transaction and routes the
+              spare change into staking, tokenized gold, or index exposure
+              automatically.
             </p>
             <div class="hero-actions reveal">
               <a class="button button-primary" href="#waitlist">
-                Download Extension
+                Download Beta
               </a>
               <a class="button button-ghost" href="#simulator">
-                See How It Works
+                Explore Product
               </a>
+            </div>
+            <div class="hero-proof reveal" aria-label="Helio trust signals">
+              <span class="hero-proof-chip">Extension beta</span>
+              <span class="hero-proof-chip">Smart routing engine</span>
+              <span class="hero-proof-chip">Non-custodial by default</span>
             </div>
             <ul class="hero-metrics reveal" aria-label="Product highlights">
               <li>
@@ -84,6 +89,10 @@
               <li>
                 <strong>Non-custodial</strong>
                 <span>Your wallet, your keys, your yield positions</span>
+              </li>
+              <li>
+                <strong>Switch instantly</strong>
+                <span>Re-route spare change without closing positions manually</span>
               </li>
             </ul>
           </div>
@@ -160,13 +169,38 @@
             <div class="floating-card floating-card-bottom">
               <span>Best route</span>
               <strong>SOL staking selected</strong>
-              <small>Validator APY currently leads</small>
+              <small>Routing engine selected the highest-fit yield path</small>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="section simulator-section" id="simulator">
+      <section class="proof-rail-section" aria-label="Helio product loop">
+        <div class="container proof-rail-shell reveal">
+          <article class="proof-rail-item">
+            <span class="proof-rail-kicker">01</span>
+            <strong>Set your rule</strong>
+            <p>Choose the exact round-up threshold Helio should apply on every payment.</p>
+          </article>
+          <article class="proof-rail-item">
+            <span class="proof-rail-kicker">02</span>
+            <strong>Pick a destination</strong>
+            <p>Route spare change into staking, tokenized gold, or index exposure.</p>
+          </article>
+          <article class="proof-rail-item">
+            <span class="proof-rail-kicker">03</span>
+            <strong>Let transactions compound</strong>
+            <p>Each send auto-captures the delta and moves it on-chain in real time.</p>
+          </article>
+          <article class="proof-rail-item">
+            <span class="proof-rail-kicker">04</span>
+            <strong>Claim or switch anytime</strong>
+            <p>Keep the flow passive, but stay in control of the route whenever you want.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section panel-section simulator-section" id="simulator">
         <div class="container">
           <div class="section-heading reveal">
             <span class="section-label">Live Round-Up Simulator</span>
@@ -197,7 +231,7 @@
                   id="transaction-range"
                   type="range"
                   min="0.01"
-                  max="250"
+                  max="500"
                   step="0.01"
                   value="4.60"
                 />
@@ -312,7 +346,7 @@
         </div>
       </section>
 
-      <section class="section" id="how-it-works">
+      <section class="section panel-section process-section" id="how-it-works">
         <div class="container">
           <div class="section-heading reveal">
             <span class="section-label">How It Works</span>
@@ -390,7 +424,7 @@
         </div>
       </section>
 
-      <section class="section" id="features">
+      <section class="section panel-section feature-section" id="features">
         <div class="container">
           <div class="section-heading reveal">
             <span class="section-label">Features Breakdown</span>
@@ -525,7 +559,7 @@
         </div>
       </section>
 
-      <section class="section" id="destinations">
+      <section class="section panel-section destination-section" id="destinations">
         <div class="container">
           <div class="section-heading reveal">
             <span class="section-label">Investment Destinations</span>
@@ -616,7 +650,7 @@
         </div>
       </section>
 
-      <section class="section" id="community">
+      <section class="section panel-section community-section" id="community">
         <div class="container">
           <div class="section-heading reveal">
             <span class="section-label">Testimonials</span>
@@ -720,75 +754,108 @@
 
     <footer class="site-footer" id="footer">
       <div class="container footer-shell">
-        <div class="footer-brand">
-          <a class="brand brand-logo brand-logo-footer" href="#home" aria-label="Helio home">
-            <img
-              class="brand-asset brand-asset-footer"
-              src="Assets/Untitled design.png"
-              alt="Helio"
-              width="1772"
-              height="1181"
-            />
-          </a>
-          <p>
-            Premium DeFi infrastructure for passive wealth accumulation at the
-            wallet layer.
-          </p>
-          <span class="built-on-badge">Built on Solana</span>
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a class="brand brand-logo brand-logo-footer" href="#home" aria-label="Helio home">
+              <img
+                class="brand-asset brand-asset-footer"
+                src="Assets/Untitled design.png"
+                alt="Helio"
+                width="1772"
+                height="1181"
+              />
+            </a>
+            <p>
+              Smart spare-change investing for Solana-native users. Helio rounds
+              up every send, routes the delta automatically, and keeps your
+              positions non-custodial.
+            </p>
+            <div class="footer-actions">
+              <a class="footer-action footer-action-primary" href="#waitlist">
+                Download Beta
+              </a>
+              <a class="footer-action footer-action-secondary" href="#simulator">
+                Open Simulator
+              </a>
+            </div>
+            <div class="footer-meta">
+              <span class="built-on-badge">Built on Solana</span>
+              <span class="footer-meta-chip">Chrome extension</span>
+              <span class="footer-meta-chip">Non-custodial</span>
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <div class="footer-link-group">
+              <h3>Product</h3>
+              <a href="#home">Wallet</a>
+              <a href="#simulator">Round-Up Engine</a>
+              <a href="#destinations">Destinations</a>
+              <a href="#waitlist">Download Beta</a>
+            </div>
+            <div class="footer-link-group">
+              <h3>Resources</h3>
+              <a href="#features">Features</a>
+              <a href="#community">Community</a>
+              <a href="#waitlist">Docs</a>
+              <a href="#waitlist">Blog</a>
+            </div>
+            <div class="footer-link-group">
+              <h3>Support</h3>
+              <a href="#how-it-works">Get Started</a>
+              <a href="#features">Security</a>
+              <a href="#simulator">APY Simulator</a>
+              <a href="#waitlist">Help Center</a>
+            </div>
+            <div class="footer-link-group">
+              <h3>Company</h3>
+              <a href="#home">About Helio</a>
+              <a href="#community">Community</a>
+              <a href="#waitlist">Waitlist</a>
+              <a href="#footer">Press Kit</a>
+            </div>
+          </div>
         </div>
 
-        <div class="footer-links">
-          <div>
-            <h3>Navigation</h3>
-            <a href="#home">Home</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#features">Features</a>
-            <a href="#waitlist">Docs</a>
-            <a href="#waitlist">Blog</a>
+        <div class="footer-bottom">
+          <p class="footer-caption">© 2026 Helio. Spare change, routed intelligently.</p>
+          <div class="footer-bottom-links">
+            <a href="#footer">Privacy Policy</a>
+            <a href="#footer">Terms of Service</a>
           </div>
-          <div>
-            <h3>Social</h3>
-            <a class="social-link" href="#community" aria-label="Helio on Twitter/X">
+          <div class="footer-socials" aria-label="Helio social links">
+            <a class="footer-social" href="#community" aria-label="Helio on Twitter/X">
               <svg viewBox="0 0 24 24" role="presentation">
                 <path
                   d="M4 4L10.2 12.3L4.4 20H7.2L11.5 14.3L15.8 20H20L13.5 11.3L18.9 4H16.1L12.2 9.2L8.2 4H4Z"
                   fill="currentColor"
                 ></path>
               </svg>
-              <span>Twitter/X</span>
             </a>
-            <a class="social-link" href="#community" aria-label="Helio on Discord">
+            <a class="footer-social" href="#community" aria-label="Helio on Discord">
               <svg viewBox="0 0 24 24" role="presentation">
                 <path
                   d="M7 7.7C8.7 6.9 10.2 6.5 12 6.5C13.8 6.5 15.3 6.9 17 7.7C18.2 9.5 18.9 11.3 19.3 13.2C18.3 14.1 17.3 14.8 16.3 15.4L15.6 14.3C16.3 13.9 16.8 13.6 17.2 13.2C15.8 14.1 14.1 14.5 12 14.5C9.9 14.5 8.2 14.1 6.8 13.2C7.2 13.6 7.7 13.9 8.4 14.3L7.7 15.4C6.7 14.8 5.7 14.1 4.7 13.2C5.1 11.3 5.8 9.5 7 7.7ZM9.6 12.6C10.2 12.6 10.7 12 10.7 11.3C10.7 10.6 10.2 10 9.6 10C8.9 10 8.4 10.6 8.4 11.3C8.4 12 8.9 12.6 9.6 12.6ZM14.4 12.6C15.1 12.6 15.6 12 15.6 11.3C15.6 10.6 15.1 10 14.4 10C13.8 10 13.3 10.6 13.3 11.3C13.3 12 13.8 12.6 14.4 12.6Z"
                   fill="currentColor"
                 ></path>
               </svg>
-              <span>Discord</span>
             </a>
-            <a class="social-link" href="#community" aria-label="Helio on GitHub">
+            <a class="footer-social" href="#community" aria-label="Helio on GitHub">
               <svg viewBox="0 0 24 24" role="presentation">
                 <path
                   d="M12 3.8C7.5 3.8 4 7.4 4 11.8C4 15.4 6.3 18.4 9.5 19.4C9.9 19.5 10 19.2 10 19V17.7C7.8 18.2 7.3 16.8 7.3 16.8C6.9 15.8 6.3 15.5 6.3 15.5C5.5 15 6.4 15 6.4 15C7.2 15.1 7.7 15.9 7.7 15.9C8.5 17.2 9.7 16.8 10.1 16.5C10.2 15.9 10.4 15.5 10.7 15.3C8.9 15.1 7 14.4 7 11.2C7 10.3 7.4 9.5 8 8.9C7.9 8.6 7.6 7.7 8.1 6.6C8.1 6.6 8.8 6.4 10 7.2C10.6 7 11.3 6.9 12 6.9C12.7 6.9 13.4 7 14 7.2C15.2 6.4 15.9 6.6 15.9 6.6C16.4 7.7 16.1 8.6 16 8.9C16.6 9.5 17 10.3 17 11.2C17 14.4 15.1 15.1 13.3 15.3C13.7 15.6 14 16.2 14 17.1V19C14 19.2 14.1 19.5 14.5 19.4C17.7 18.4 20 15.4 20 11.8C20 7.4 16.5 3.8 12 3.8Z"
                   fill="currentColor"
                 ></path>
               </svg>
-              <span>GitHub</span>
             </a>
-            <a class="social-link" href="#community" aria-label="Helio on Telegram">
+            <a class="footer-social" href="#community" aria-label="Helio on Telegram">
               <svg viewBox="0 0 24 24" role="presentation">
                 <path
                   d="M19.7 5.1L17.9 18C17.8 18.8 17.3 19 16.6 18.6L12.8 15.8L11 17.5C10.8 17.7 10.7 17.8 10.4 17.8L10.7 13.9L17.8 7.5C18.1 7.2 17.7 7.1 17.3 7.4L8.5 12.9L4.7 11.7C3.9 11.4 3.9 10.9 4.9 10.5L18.8 5.2C19.4 5 19.9 5.3 19.7 5.1Z"
                   fill="currentColor"
                 ></path>
               </svg>
-              <span>Telegram</span>
             </a>
-          </div>
-          <div>
-            <h3>Legal</h3>
-            <a href="#footer">Privacy Policy</a>
-            <a href="#footer">Terms of Service</a>
           </div>
         </div>
       </div>
