@@ -5,95 +5,81 @@ const destinations = {
     apy: 0.072,
     copy: "SOL staking",
   },
-  gold: {
-    name: "Tokenized Gold",
-    label: "Inflation-aware on-chain hedge",
-    apy: 0.046,
-    copy: "tokenized gold",
+  vault: {
+    name: "USDC Vault",
+    label: "Build a lower-volatility reserve",
+    apy: 0.048,
+    copy: "a USDC vault",
   },
   index: {
-    name: "Index Token",
+    name: "Crypto Index",
     label: "Diversified crypto basket",
     apy: 0.114,
-    copy: "index token",
+    copy: "a crypto index",
   },
 };
 
 const state = {
-  amount: 4.6,
-  threshold: 0.5,
+  amount: 42.8,
+  addOn: 1,
   destination: "staking",
-  transactionsPerDay: 20,
+  transactionsPerDay: 12,
 };
 
 const amountInput = document.querySelector("#transaction-amount");
-const rangeInput = document.querySelector("#transaction-range");
-const thresholdButtons = document.querySelectorAll("[data-threshold]");
+const amountRange = document.querySelector("#transaction-range");
+const countInput = document.querySelector("#transaction-count");
+const countRange = document.querySelector("#transaction-count-range");
+const addOnButtons = document.querySelectorAll("[data-addon]");
 const destinationButtons = document.querySelectorAll("[data-destination]");
 const destinationCards = document.querySelectorAll("[data-destination-card]");
 const waitlistForm = document.querySelector("#waitlist-form");
 const feedback = document.querySelector("#form-feedback");
 
-const deltaOutput = document.querySelector("#delta-output");
-const deltaNote = document.querySelector("#delta-note");
+const addonOutput = document.querySelector("#addon-output");
+const addonNote = document.querySelector("#addon-note");
+const totalOutput = document.querySelector("#total-output");
 const monthlyOutput = document.querySelector("#monthly-output");
 const annualOutput = document.querySelector("#annual-output");
 const annualNote = document.querySelector("#annual-note");
 const routeBadge = document.querySelector("#route-badge");
 const flowSpend = document.querySelector("#flow-spend");
-const flowRound = document.querySelector("#flow-round");
+const flowAddon = document.querySelector("#flow-addon");
+const flowTotal = document.querySelector("#flow-total");
 const flowApy = document.querySelector("#flow-apy");
 const principalOutput = document.querySelector("#principal-output");
 const portfolioOutput = document.querySelector("#portfolio-output");
 const destinationCopy = document.querySelector("#destination-copy");
+const mockupSpend = document.querySelector("#mockup-spend");
+const mockupAddon = document.querySelector("#mockup-addon");
+const mockupTotal = document.querySelector("#mockup-total");
+const mockupRoute = document.querySelector("#mockup-route");
+const mockupMonthly = document.querySelector("#mockup-monthly");
+
 const amountMin = Math.max(
   Number(amountInput?.min || 0.01),
-  Number(rangeInput?.min || 0.01),
+  Number(amountRange?.min || 0.01),
 );
 const amountMax = Math.max(
-  Number(amountInput?.max || 500),
-  Number(rangeInput?.max || 500),
+  Number(amountInput?.max || 1000),
+  Number(amountRange?.max || 1000),
 );
 
-function clampAmount(value) {
+const countMin = Math.max(
+  Number(countInput?.min || 1),
+  Number(countRange?.min || 1),
+);
+const countMax = Math.max(
+  Number(countInput?.max || 80),
+  Number(countRange?.max || 80),
+);
+
+function clamp(value, min, max, fallback) {
   if (!Number.isFinite(value)) {
-    return state.amount;
+    return fallback;
   }
 
-  return Math.min(Math.max(value, amountMin), amountMax);
-}
-
-function setSliderProgress() {
-  const min = Number(rangeInput.min);
-  const max = Number(rangeInput.max);
-  const progress = Math.min(Math.max(((state.amount - min) / (max - min)) * 100, 0), 100);
-  rangeInput.style.setProperty("--slider-progress", `${progress}%`);
-}
-
-function getRoundUpPlan(amount, threshold) {
-  const quotient = amount / threshold;
-  const isExactMultiple = Math.abs(quotient - Math.round(quotient)) < 1e-9;
-  const multiple = isExactMultiple ? Math.round(quotient) + 1 : Math.ceil(quotient);
-  const roundedTarget = Number((multiple * threshold).toFixed(2));
-  const delta = Number((roundedTarget - amount).toFixed(2));
-
-  return {
-    delta,
-    roundedTarget,
-  };
-}
-
-function futureValueWithDailyContributions(dailyContribution, apy) {
-  const periods = 365;
-  if (apy === 0) {
-    return dailyContribution * periods;
-  }
-
-  const ratePerPeriod = apy / periods;
-  const futureValue =
-    dailyContribution * (((1 + ratePerPeriod) ** periods - 1) / ratePerPeriod);
-
-  return futureValue;
+  return Math.min(Math.max(value, min), max);
 }
 
 function formatCurrency(value) {
@@ -105,34 +91,25 @@ function formatCurrency(value) {
   }).format(value);
 }
 
-function formatCounter(value, format) {
-  if (format === "currency-short") {
-    const short = new Intl.NumberFormat("en-US", {
-      notation: "compact",
-      compactDisplay: "short",
-      maximumFractionDigits: value >= 1000000 ? 1 : 0,
-    }).format(value);
+function futureValueWithDailyContributions(dailyContribution, apy) {
+  const periods = 365;
 
-    return `$${short}+`;
+  if (apy === 0) {
+    return dailyContribution * periods;
   }
 
-  if (format === "number-short") {
-    const formatted = value >= 100000
-      ? new Intl.NumberFormat("en-US", {
-          notation: "compact",
-          compactDisplay: "short",
-          maximumFractionDigits: 1,
-        }).format(value)
-      : new Intl.NumberFormat("en-US").format(Math.round(value));
+  const ratePerPeriod = apy / periods;
 
-    return `${formatted}+`;
+  return dailyContribution * (((1 + ratePerPeriod) ** periods - 1) / ratePerPeriod);
+}
+
+function setSliderProgress(input, value, min, max) {
+  if (!input) {
+    return;
   }
 
-  if (format === "percent") {
-    return `${value.toFixed(1)}%`;
-  }
-
-  return new Intl.NumberFormat("en-US").format(Math.round(value));
+  const progress = Math.min(Math.max(((value - min) / (max - min)) * 100, 0), 100);
+  input.style.setProperty("--slider-progress", `${progress}%`);
 }
 
 function updateActiveState(collection, value, attribute) {
@@ -142,50 +119,73 @@ function updateActiveState(collection, value, attribute) {
 }
 
 function renderSimulator() {
-  const amount = state.amount;
-  const threshold = state.threshold;
   const destination = destinations[state.destination];
-
-  const { delta, roundedTarget } = getRoundUpPlan(amount, threshold);
-  const dailyContribution = delta * state.transactionsPerDay;
+  const addOn = state.addOn;
+  const transactionTotal = state.amount + addOn;
+  const dailyContribution = addOn * state.transactionsPerDay;
   const monthlyContribution = dailyContribution * 30;
   const annualContribution = dailyContribution * 365;
-  const portfolioValue = futureValueWithDailyContributions(
-    dailyContribution,
-    destination.apy,
-  );
-  const annualYield = portfolioValue - annualContribution;
+  const projectedValue = futureValueWithDailyContributions(dailyContribution, destination.apy);
+  const annualYield = projectedValue - annualContribution;
 
-  amountInput.value = amount.toFixed(2);
-  rangeInput.value = amount.toFixed(2);
-  setSliderProgress();
+  if (amountInput) {
+    amountInput.value = state.amount.toFixed(2);
+  }
 
-  deltaOutput.textContent = `${formatCurrency(delta)} invested`;
-  deltaNote.textContent = `Rounded from ${formatCurrency(amount)} to ${formatCurrency(
-    roundedTarget,
-  )} and routed to ${destination.copy}.`;
+  if (amountRange) {
+    amountRange.value = state.amount.toFixed(2);
+    setSliderProgress(amountRange, state.amount, amountMin, amountMax);
+  }
 
-  monthlyOutput.textContent = `${formatCurrency(monthlyContribution)} / month`;
-  annualOutput.textContent = `${formatCurrency(annualYield)} / year`;
-  annualNote.textContent = `Based on a ${(destination.apy * 100).toFixed(
+  if (countInput) {
+    countInput.value = String(state.transactionsPerDay);
+  }
+
+  if (countRange) {
+    countRange.value = String(state.transactionsPerDay);
+    setSliderProgress(countRange, state.transactionsPerDay, countMin, countMax);
+  }
+
+  addonOutput.textContent = `${formatCurrency(addOn)} added`;
+  addonNote.textContent = `Helio adds ${formatCurrency(addOn)} to a ${formatCurrency(
+    state.amount,
+  )} transaction and routes it to ${destination.copy}.`;
+  totalOutput.textContent = formatCurrency(transactionTotal);
+  monthlyOutput.textContent = formatCurrency(monthlyContribution);
+  annualOutput.textContent = formatCurrency(annualYield);
+  annualNote.textContent = `Mock projection based on ${(destination.apy * 100).toFixed(
     1,
-  )}% APY with daily round-ups.`;
+  )}% APY and ${state.transactionsPerDay} daily add-ons.`;
 
   routeBadge.textContent = destination.name;
-  flowSpend.textContent = formatCurrency(amount);
-  flowRound.textContent = formatCurrency(delta);
+  flowSpend.textContent = formatCurrency(state.amount);
+  flowAddon.textContent = formatCurrency(addOn);
+  flowTotal.textContent = formatCurrency(transactionTotal);
   flowApy.textContent = `${(destination.apy * 100).toFixed(1)}% APY`;
   principalOutput.textContent = formatCurrency(annualContribution);
-  portfolioOutput.textContent = formatCurrency(portfolioValue);
+  portfolioOutput.textContent = formatCurrency(projectedValue);
   destinationCopy.textContent = destination.label;
 
-  updateActiveState(thresholdButtons, String(threshold), "threshold");
+  mockupSpend.textContent = formatCurrency(state.amount);
+  mockupAddon.textContent = formatCurrency(addOn);
+  mockupTotal.textContent = formatCurrency(transactionTotal);
+  mockupRoute.textContent = destination.name;
+  mockupMonthly.textContent = formatCurrency(monthlyContribution);
+
+  updateActiveState(addOnButtons, String(addOn), "addon");
   updateActiveState(destinationButtons, state.destination, "destination");
   updateActiveState(destinationCards, state.destination, "destinationCard");
 }
 
 function handleAmountInput(value) {
-  state.amount = clampAmount(Number(value));
+  state.amount = clamp(Number(value), amountMin, amountMax, state.amount);
+  renderSimulator();
+}
+
+function handleCountInput(value) {
+  state.transactionsPerDay = Math.round(
+    clamp(Number(value), countMin, countMax, state.transactionsPerDay),
+  );
   renderSimulator();
 }
 
@@ -193,13 +193,21 @@ amountInput?.addEventListener("input", (event) => {
   handleAmountInput(event.target.value);
 });
 
-rangeInput?.addEventListener("input", (event) => {
+amountRange?.addEventListener("input", (event) => {
   handleAmountInput(event.target.value);
 });
 
-thresholdButtons.forEach((button) => {
+countInput?.addEventListener("input", (event) => {
+  handleCountInput(event.target.value);
+});
+
+countRange?.addEventListener("input", (event) => {
+  handleCountInput(event.target.value);
+});
+
+addOnButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    state.threshold = Number(button.dataset.threshold);
+    state.addOn = Number(button.dataset.addon);
     renderSimulator();
   });
 });
@@ -235,184 +243,34 @@ waitlistForm?.addEventListener("submit", (event) => {
   const email = String(formData.get("email") || "").trim();
 
   if (!email) {
-    feedback.textContent = "Enter an email address to join the Helio waitlist.";
+    feedback.textContent = "Enter an email address to join the Helio beta.";
     return;
   }
 
-  feedback.textContent = `You're on the list, ${email}. We'll send Helio launch access soon.`;
+  feedback.textContent = `You're on the list, ${email}. We'll send Helio beta access soon.`;
   waitlistForm.reset();
 });
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.15,
-    rootMargin: "0px 0px -40px 0px",
-  },
-);
-
-document.querySelectorAll(".reveal").forEach((element, index) => {
-  element.style.transitionDelay = `${Math.min(index * 40, 220)}ms`;
-  revealObserver.observe(element);
-});
-
-const counters = document.querySelectorAll("[data-counter]");
-const counterObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
       if (!entry.isIntersecting) {
         return;
       }
 
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
+      entry.target.classList.add("is-visible");
+      revealObserver.unobserve(entry.target);
     });
   },
   {
-    threshold: 0.4,
+    threshold: 0.14,
+    rootMargin: "0px 0px -36px 0px",
   },
 );
 
-counters.forEach((counter) => counterObserver.observe(counter));
-
-function animateCounter(counter) {
-  const target = Number(counter.dataset.value);
-  const format = counter.dataset.format;
-  const duration = 1600;
-  const start = performance.now();
-
-  function tick(timestamp) {
-    const progress = Math.min((timestamp - start) / duration, 1);
-    const eased = 1 - (1 - progress) ** 3;
-    const current = target * eased;
-
-    counter.textContent = formatCounter(current, format);
-
-    if (progress < 1) {
-      requestAnimationFrame(tick);
-    } else {
-      counter.textContent = formatCounter(target, format);
-    }
-  }
-
-  requestAnimationFrame(tick);
-}
-
-function createHeroParticles() {
-  const canvas = document.querySelector("#hero-particles");
-  const hero = document.querySelector(".hero");
-
-  if (!canvas || !hero || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return;
-  }
-
-  const context = canvas.getContext("2d");
-  const particles = [];
-  const rootStyles = getComputedStyle(document.documentElement);
-  const lineColor = rootStyles.getPropertyValue("--purple").trim() || "#1a1fb8";
-  let width = 0;
-  let height = 0;
-  let animationFrame;
-
-  function resizeCanvas() {
-    const rect = hero.getBoundingClientRect();
-    width = rect.width;
-    height = rect.height;
-    canvas.width = Math.floor(width * devicePixelRatio);
-    canvas.height = Math.floor(height * devicePixelRatio);
-    canvas.style.width = `${width}px`;
-    canvas.style.height = `${height}px`;
-    context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-
-    particles.length = 0;
-    const count = Math.min(46, Math.max(26, Math.floor(width / 28)));
-
-    for (let index = 0; index < count; index += 1) {
-      particles.push({
-        x: Math.random() * width,
-        y: Math.random() * height,
-        size: Math.random() * 2.2 + 0.8,
-        speedY: Math.random() * 0.28 + 0.08,
-        speedX: (Math.random() - 0.5) * 0.16,
-        alpha: Math.random() * 0.45 + 0.18,
-      });
-    }
-  }
-
-  function draw() {
-    context.clearRect(0, 0, width, height);
-
-    particles.forEach((particle, particleIndex) => {
-      particle.y -= particle.speedY;
-      particle.x += particle.speedX;
-
-      if (particle.y < -12) {
-        particle.y = height + 12;
-      }
-
-      if (particle.x < -12) {
-        particle.x = width + 12;
-      }
-
-      if (particle.x > width + 12) {
-        particle.x = -12;
-      }
-
-      context.beginPath();
-      context.fillStyle = `rgba(0, 0, 0, ${particle.alpha * 0.26})`;
-      context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      context.fill();
-
-      for (let innerIndex = particleIndex + 1; innerIndex < particles.length; innerIndex += 1) {
-        const other = particles[innerIndex];
-        const dx = particle.x - other.x;
-        const dy = particle.y - other.y;
-        const distance = Math.hypot(dx, dy);
-
-        if (distance < 110) {
-          context.beginPath();
-          context.strokeStyle = hexToRgba(lineColor, 0.1 - distance / 1400);
-          context.lineWidth = 1;
-          context.moveTo(particle.x, particle.y);
-          context.lineTo(other.x, other.y);
-          context.stroke();
-        }
-      }
-    });
-
-    animationFrame = requestAnimationFrame(draw);
-  }
-
-  resizeCanvas();
-  draw();
-
-  window.addEventListener("resize", () => {
-    cancelAnimationFrame(animationFrame);
-    resizeCanvas();
-    draw();
-  });
-}
-
-function hexToRgba(hex, alpha) {
-  const normalized = hex.replace("#", "").trim();
-
-  if (normalized.length !== 6) {
-    return `rgba(26, 31, 184, ${Math.max(alpha, 0)})`;
-  }
-
-  const r = Number.parseInt(normalized.slice(0, 2), 16);
-  const g = Number.parseInt(normalized.slice(2, 4), 16);
-  const b = Number.parseInt(normalized.slice(4, 6), 16);
-
-  return `rgba(${r}, ${g}, ${b}, ${Math.max(alpha, 0)})`;
-}
+document.querySelectorAll(".reveal").forEach((element, index) => {
+  element.style.transitionDelay = `${Math.min(index * 35, 180)}ms`;
+  revealObserver.observe(element);
+});
 
 renderSimulator();
-createHeroParticles();
