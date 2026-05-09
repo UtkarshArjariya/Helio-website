@@ -418,8 +418,18 @@ svg {
     letter-spacing: -0.015em;
 }
 
-.hero h1 span {
-    color: var(--lime);
+.hero h1 {
+    color: var(--white);
+}
+
+h2 mark {
+    background: var(--lime);
+    color: var(--black);
+    padding: 0.06em 0.12em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    border-radius: 0;
+    font-style: normal;
 }
 
 .hero-subhead,
@@ -1167,19 +1177,47 @@ svg {
 }
 
 .auto-invest-section {
+    position: relative;
+    overflow: hidden;
     background:
-        linear-gradient(180deg, rgba(3, 3, 3, 0.86), rgba(3, 3, 3, 0.96)),
-        url("Assets/twitter-banner.jpg") center / cover no-repeat,
-        radial-gradient(
-            circle at 84% 28%,
-            rgba(198, 240, 0, 0.25),
-            transparent 24%
-        ),
+        radial-gradient(ellipse 55% 75% at 8% 50%, rgba(198, 240, 0, 0.09), transparent),
+        radial-gradient(ellipse 45% 65% at 92% 28%, rgba(47, 125, 255, 0.11), transparent),
         var(--black);
     color: var(--white);
 }
 
+.auto-invest-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(198, 240, 0, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198, 240, 0, 0.14) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.9) 30%,
+        rgba(0, 0, 0, 0.9) 70%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        135deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.9) 30%,
+        rgba(0, 0, 0, 0.9) 70%,
+        transparent 100%
+    );
+    -webkit-mask-size: 280% 280%;
+    mask-size: 280% 280%;
+    animation: gridDraw 6s linear infinite;
+}
+
 .auto-invest-layout {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: minmax(0, 0.86fr) minmax(480px, 1.14fr);
     gap: 42px;
@@ -1214,37 +1252,42 @@ svg {
 }
 
 .process-card img {
-    width: 260px;
+    width: 220px;
     aspect-ratio: 1;
     margin: 0 auto;
-    border-radius: 32px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .process-grid {
     display: grid;
-    gap: 12px;
+    gap: 18px;
 }
 
 .process-grid div {
-    padding: 18px;
+    padding: 20px 22px;
     border-radius: 22px;
     background: var(--white);
     color: var(--black);
 }
 
 .process-grid span {
-    color: rgba(0, 0, 0, 0.42);
-    font-family: "General Sans", "Inter", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--black);
+    color: var(--lime);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    vertical-align: middle;
 }
 
 .process-grid strong {
-    display: block;
-    margin-top: 5px;
+    display: inline;
     font-family: "Sora", "Satoshi", sans-serif;
     font-size: 1.05rem;
+    vertical-align: middle;
 }
 
 .process-grid p {
@@ -1940,6 +1983,17 @@ input[type="range"]::-moz-range-thumb {
         background-position:
             64px 64px,
             64px 64px;
+    }
+}
+
+@keyframes gridDraw {
+    0% {
+        -webkit-mask-position: 150% -50%;
+        mask-position: 150% -50%;
+    }
+    100% {
+        -webkit-mask-position: -50% 150%;
+        mask-position: -50% 150%;
     }
 }
 
