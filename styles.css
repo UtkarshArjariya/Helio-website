@@ -1,3 +1,70 @@
+/* ─── Self-hosted Font Declarations ─── */
+
+/* Space Grotesk – Hero headings, impact text */
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("Assets/fonts/SpaceGrotesk/SpaceGrotesk-Variable.ttf") format("truetype");
+    font-weight: 300 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* Sora – Section headings */
+@font-face {
+    font-family: "Sora";
+    src: url("Assets/fonts/Sora/Sora-Variable.ttf") format("truetype");
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* Inter – Body text, UI default */
+@font-face {
+    font-family: "Inter";
+    src: url("Assets/fonts/Inter/Inter-Variable.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* Outfit – Brand name, nav links */
+@font-face {
+    font-family: "Outfit";
+    src: url("Assets/fonts/Outfit/Outfit-Variable.ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* Satoshi – Phone mockup UI, crypto-native surfaces */
+@font-face {
+    font-family: "Satoshi";
+    src: url("Assets/fonts/Satoshi/Satoshi-Variable.woff2") format("woff2");
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* General Sans – Captions, labels, secondary text */
+@font-face {
+    font-family: "General Sans";
+    src: url("Assets/fonts/GeneralSans/GeneralSans-Variable.woff2") format("woff2");
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* Cabinet Grotesk – Strategy cards, feature callouts */
+@font-face {
+    font-family: "Cabinet Grotesk";
+    src: url("Assets/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff2") format("woff2");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* ─── Design Tokens ─── */
+
 :root {
     --lime: #c6f000;
     --lime-soft: #e8ff63;
@@ -34,7 +101,7 @@ body {
     min-width: 320px;
     background: var(--black);
     color: var(--ink);
-    font-family: "Inter", "Segoe UI", sans-serif;
+    font-family: "Inter", "General Sans", "Segoe UI", sans-serif;
     line-height: 1.5;
     overflow-x: hidden;
 }
@@ -104,8 +171,9 @@ svg {
     padding: 0 14px 0 10px;
     border-radius: 999px;
     color: var(--white);
+    font-family: "Outfit", "Sora", sans-serif;
     font-size: 1.18rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.04em;
 }
 
@@ -142,6 +210,7 @@ svg {
     padding: 11px 14px;
     border-radius: 999px;
     color: rgba(255, 255, 255, 0.68);
+    font-family: "Outfit", "Inter", sans-serif;
     font-size: 0.92rem;
     font-weight: 400;
     transition:
@@ -163,7 +232,8 @@ svg {
     min-height: 46px;
     border: 0;
     border-radius: 999px;
-    font-weight: 400;
+    font-family: "Outfit", "Sora", sans-serif;
+    font-weight: 500;
     transition:
         transform 180ms ease,
         box-shadow 180ms ease,
@@ -282,7 +352,7 @@ svg {
     display: grid;
     grid-template-columns: minmax(0, 0.94fr) minmax(540px, 1.06fr);
     align-items: center;
-    gap: 72px;
+    gap: 120px;
     min-height: 730px;
 }
 
@@ -303,9 +373,11 @@ svg {
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.78);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.78rem;
-    font-weight: 400;
+    font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .eyebrow-dot {
@@ -328,6 +400,18 @@ svg {
     letter-spacing: -0.032em;
 }
 
+/* Hero uses Space Grotesk for maximum impact */
+.hero h1 {
+    font-family: "Space Grotesk", "Sora", sans-serif;
+}
+
+/* Section headings use Sora for modern premium feel */
+.section-heading h2,
+.security-copy h2,
+.waitlist-copy h2 {
+    font-family: "Sora", "Space Grotesk", sans-serif;
+}
+
 .hero h1 {
     max-width: 13ch;
     line-height: 0.98;
@@ -346,6 +430,7 @@ svg {
     max-width: 620px;
     margin: 26px 0 0;
     color: var(--muted-dark);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 1.06rem;
     line-height: 1.75;
     letter-spacing: -0.025em;
@@ -358,40 +443,6 @@ svg {
     margin-top: 34px;
 }
 
-.hero-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    width: min(680px, 100%);
-    margin-top: 36px;
-}
-
-.hero-metrics div {
-    min-height: 116px;
-    padding: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 22px;
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(12px);
-}
-
-.hero-metrics strong,
-.hero-metrics span {
-    display: block;
-}
-
-.hero-metrics strong {
-    font-size: 1.42rem;
-    line-height: 1;
-    letter-spacing: -0.06em;
-}
-
-.hero-metrics span {
-    margin-top: 10px;
-    color: rgba(255, 255, 255, 0.58);
-    font-size: 0.91rem;
-    font-weight: 650;
-}
 
 .hero-showcase {
     position: relative;
@@ -438,6 +489,7 @@ svg {
     padding: 22px 18px;
     background: #050505;
     color: var(--white);
+    font-family: "Satoshi", "Inter", sans-serif;
 }
 
 .phone::before,
@@ -467,13 +519,6 @@ svg {
     transform: rotate(1.5deg);
 }
 
-.phone-invest {
-    right: 0;
-    top: 82px;
-    z-index: 2;
-    width: 262px;
-    transform: rotate(-1deg);
-}
 
 .phone-logo,
 .phone-topline,
@@ -498,7 +543,8 @@ svg {
 .phone-logo {
     justify-content: flex-start;
     gap: 8px;
-    font-weight: 400;
+    font-family: "Outfit", "Satoshi", sans-serif;
+    font-weight: 500;
     letter-spacing: -0.06em;
 }
 
@@ -518,9 +564,10 @@ svg {
 
 .onboarding-headline {
     margin-top: 48px;
+    font-family: "Space Grotesk", "Satoshi", sans-serif;
     font-size: 2.25rem;
     line-height: 1.04;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: -0.035em;
 }
 
@@ -593,6 +640,7 @@ svg {
 .phone-home h3,
 .phone-invest h3 {
     margin: 4px 0 0;
+    font-family: "Space Grotesk", "Satoshi", sans-serif;
     font-size: 2.1rem;
     line-height: 1.08;
     letter-spacing: -0.035em;
@@ -670,8 +718,9 @@ svg {
 .strategy-card small {
     display: block;
     color: var(--muted);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.76rem;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .stat-card strong {
@@ -844,6 +893,7 @@ svg {
     padding: 18px;
     border-color: rgba(0, 0, 0, 0.08);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    font-family: "Satoshi", "Inter", sans-serif;
 }
 
 .mini-screen.dark {
@@ -1173,19 +1223,22 @@ svg {
 
 .process-grid span {
     color: rgba(0, 0, 0, 0.42);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.78rem;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .process-grid strong {
     display: block;
     margin-top: 5px;
+    font-family: "Sora", "Satoshi", sans-serif;
     font-size: 1.05rem;
 }
 
 .process-grid p {
     margin: 8px 0 0;
     color: var(--muted);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.92rem;
 }
 
@@ -1240,6 +1293,7 @@ svg {
 .control-group label,
 .control-label {
     color: rgba(255, 255, 255, 0.78);
+    font-family: "General Sans", "Inter", sans-serif;
     font-weight: 500;
 }
 
@@ -1283,7 +1337,7 @@ svg {
 
 .stepper-row span {
     color: rgba(0, 0, 0, 0.58);
-    font-family: "Outfit", "Inter", sans-serif;
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.94rem;
     font-weight: 400;
 }
@@ -1358,7 +1412,7 @@ input[type="range"]::-moz-range-thumb {
 
 .destination-pill small {
     color: rgba(255, 255, 255, 0.58);
-    font-family: "Outfit", "Inter", sans-serif;
+    font-family: "General Sans", "Inter", sans-serif;
     font-weight: 400;
 }
 
@@ -1378,7 +1432,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .strategy-card small {
-    font-family: "Outfit", "Inter", sans-serif;
+    font-family: "General Sans", "Inter", sans-serif;
     font-weight: 400;
 }
 
@@ -1396,6 +1450,7 @@ input[type="range"]::-moz-range-thumb {
     padding: 20px;
     background: var(--black);
     color: var(--white);
+    font-family: "Satoshi", "Inter", sans-serif;
 }
 
 .mock-phone-header {
@@ -1458,12 +1513,14 @@ input[type="range"]::-moz-range-thumb {
 
 .result-primary span {
     color: rgba(0, 0, 0, 0.58);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.82rem;
     font-weight: 850;
 }
 
 .result-primary h3 {
     margin: 8px 0;
+    font-family: "Cabinet Grotesk", "Space Grotesk", sans-serif;
     font-size: clamp(2.15rem, 3.35vw, 3.05rem);
     line-height: 1.08;
     letter-spacing: -0.025em;
@@ -1490,6 +1547,7 @@ input[type="range"]::-moz-range-thumb {
 .result-card strong {
     display: block;
     margin-top: 8px;
+    font-family: "Satoshi", "Inter", sans-serif;
     font-size: clamp(1rem, 1.35vw, 1.16rem);
     line-height: 1.12;
     overflow-wrap: anywhere;
@@ -1506,6 +1564,7 @@ input[type="range"]::-moz-range-thumb {
 .engine-header strong {
     display: block;
     margin-top: 4px;
+    font-family: "Sora", "Satoshi", sans-serif;
     font-size: 1.22rem;
 }
 
@@ -1551,13 +1610,14 @@ input[type="range"]::-moz-range-thumb {
 }
 
 #destination-copy {
-    font-family: "Outfit", "Inter", sans-serif;
+    font-family: "General Sans", "Inter", sans-serif;
     font-weight: 400;
 }
 
 .simulator-footnote {
     margin: 0;
     color: rgba(255, 255, 255, 0.52);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.9rem;
 }
 
@@ -1579,6 +1639,7 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 30px;
     background: var(--white);
     outline: none;
+    font-family: "Cabinet Grotesk", "Sora", sans-serif;
     transition:
         transform 170ms ease,
         border-color 170ms ease,
@@ -1608,6 +1669,7 @@ input[type="range"]::-moz-range-thumb {
 .strategy-card p {
     margin: 14px 0 0;
     color: var(--muted);
+    font-family: "General Sans", "Inter", sans-serif;
 }
 
 .strategy-card.active p,
@@ -1676,12 +1738,14 @@ input[type="range"]::-moz-range-thumb {
 .security-list strong {
     display: block;
     margin-bottom: 12px;
+    font-family: "Sora", "Cabinet Grotesk", sans-serif;
     font-size: 1.12rem;
     line-height: 1.12;
 }
 
 .security-list span {
     color: rgba(0, 0, 0, 0.62);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.94rem;
 }
 
@@ -1748,6 +1812,7 @@ input[type="range"]::-moz-range-thumb {
 .form-feedback {
     margin: 0;
     color: rgba(255, 255, 255, 0.66);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.9rem;
 }
 
@@ -1783,6 +1848,7 @@ input[type="range"]::-moz-range-thumb {
 
 .footer-links a {
     color: rgba(255, 255, 255, 0.72);
+    font-family: "Outfit", "Inter", sans-serif;
     font-weight: 750;
 }
 
@@ -1795,6 +1861,7 @@ input[type="range"]::-moz-range-thumb {
     grid-column: 1 / -1;
     margin: 0;
     color: rgba(255, 255, 255, 0.52);
+    font-family: "General Sans", "Inter", sans-serif;
     font-size: 0.9rem;
 }
 
