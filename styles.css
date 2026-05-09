@@ -105,7 +105,7 @@ svg {
     border-radius: 999px;
     color: var(--white);
     font-size: 1.18rem;
-    font-weight: 900;
+    font-weight: 400;
     letter-spacing: -0.04em;
 }
 
@@ -143,7 +143,7 @@ svg {
     border-radius: 999px;
     color: rgba(255, 255, 255, 0.68);
     font-size: 0.92rem;
-    font-weight: 700;
+    font-weight: 400;
     transition:
         background 180ms ease,
         color 180ms ease;
@@ -163,7 +163,7 @@ svg {
     min-height: 46px;
     border: 0;
     border-radius: 999px;
-    font-weight: 900;
+    font-weight: 400;
     transition:
         transform 180ms ease,
         box-shadow 180ms ease,
@@ -304,7 +304,7 @@ svg {
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.78);
     font-size: 0.78rem;
-    font-weight: 900;
+    font-weight: 400;
     text-transform: uppercase;
 }
 
@@ -324,12 +324,12 @@ svg {
     max-width: 9.5ch;
     font-size: clamp(4.3rem, 8vw, 7.3rem);
     line-height: 1.02;
-    font-weight: 900;
+    font-weight: 400;
     letter-spacing: -0.032em;
 }
 
 .hero h1 {
-    max-width: 11.4ch;
+    max-width: 13ch;
     line-height: 0.98;
     letter-spacing: -0.015em;
 }
@@ -498,7 +498,7 @@ svg {
 .phone-logo {
     justify-content: flex-start;
     gap: 8px;
-    font-weight: 900;
+    font-weight: 400;
     letter-spacing: -0.06em;
 }
 
@@ -520,7 +520,7 @@ svg {
     margin-top: 48px;
     font-size: 2.25rem;
     line-height: 1.04;
-    font-weight: 900;
+    font-weight: 400;
     letter-spacing: -0.035em;
 }
 
@@ -569,7 +569,7 @@ svg {
     background: var(--lime);
     color: var(--black);
     font-size: 0.82rem;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .phone a {
@@ -577,7 +577,7 @@ svg {
     margin-top: 13px;
     color: var(--white);
     font-size: 0.82rem;
-    font-weight: 800;
+    font-weight: 400;
     text-align: center;
 }
 
@@ -604,7 +604,7 @@ svg {
     margin-top: 6px;
     color: #18a836;
     font-size: 0.78rem;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .chart-line {
@@ -671,7 +671,7 @@ svg {
     display: block;
     color: var(--muted);
     font-size: 0.76rem;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .stat-card strong {
@@ -700,7 +700,7 @@ svg {
 
 .stat-card small {
     color: #18a836;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .auto-card {
@@ -744,7 +744,7 @@ svg {
 .back-row {
     justify-content: flex-start;
     font-size: 0.88rem;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .phone-invest .invest-card {
@@ -871,7 +871,7 @@ svg {
     gap: 6px;
     margin-bottom: 18px;
     font-size: 0.65rem;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .tabs span {
@@ -913,7 +913,7 @@ svg {
 
 .feed-row span {
     color: #109c32;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .feed-row small {
@@ -968,7 +968,7 @@ svg {
     background: rgba(255, 255, 255, 0.08);
     color: rgba(255, 255, 255, 0.78);
     font-size: 0.82rem;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .mini-screen label {
@@ -976,7 +976,7 @@ svg {
     margin-top: 10px;
     color: rgba(255, 255, 255, 0.54);
     font-size: 0.74rem;
-    font-weight: 800;
+    font-weight: 400;
 }
 
 .swap-box {
@@ -999,7 +999,7 @@ svg {
     border-radius: 50%;
     background: var(--lime);
     color: var(--black);
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .auto-invest-row {
@@ -1101,7 +1101,7 @@ svg {
     aspect-ratio: 1;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.08);
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .auto-invest-section {
@@ -1174,7 +1174,7 @@ svg {
 .process-grid span {
     color: rgba(0, 0, 0, 0.42);
     font-size: 0.78rem;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .process-grid strong {
@@ -1400,7 +1400,7 @@ input[type="range"]::-moz-range-thumb {
 
 .mock-phone-header {
     margin-bottom: 18px;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .mock-phone-header b {
@@ -1515,7 +1515,7 @@ input[type="range"]::-moz-range-thumb {
     background: var(--lime);
     color: var(--black);
     font-size: 0.84rem;
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .flow-list,
@@ -1623,7 +1623,7 @@ input[type="range"]::-moz-range-thumb {
     border-radius: 16px;
     background: var(--lime);
     color: var(--black);
-    font-weight: 900;
+    font-weight: 400;
 }
 
 .strategy-top strong {
@@ -1799,8 +1799,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .reveal {
-    opacity: 1;
-    transform: none;
+    opacity: 0;
+    transform: translateY(20px);
     transition:
         opacity 500ms ease,
         transform 500ms ease;
