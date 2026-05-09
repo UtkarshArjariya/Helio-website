@@ -852,7 +852,19 @@ svg {
 
 .section-heading.compact {
     grid-template-columns: 1fr;
-    max-width: 760px;
+}
+
+.section-heading.compact h2 {
+    max-width: none;
+    font-size: clamp(2rem, 3.4vw, 3.4rem);
+    line-height: 1.08;
+}
+
+.section-heading.compact p {
+    max-width: none;
+    margin-top: 20px;
+    line-height: 1.8;
+    color: var(--muted);
 }
 
 .section-heading .section-label {
@@ -883,7 +895,7 @@ svg {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 16px;
-    margin-top: 28px;
+    margin-top: 48px;
     align-items: stretch;
 }
 
