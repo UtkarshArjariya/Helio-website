@@ -1,28 +1,28 @@
 const destinations = {
-  staking: {
-    name: "SOL Staking",
-    label: "Stake with validators",
-    apy: 0.072,
-    copy: "SOL staking",
+  highest: {
+    name: "Highest APY Strategy",
+    label: "Managed by Helio",
+    apy: 0.1327,
+    copy: "Highest APY Strategy",
   },
-  vault: {
-    name: "USDC Vault",
-    label: "Build a lower-volatility reserve",
-    apy: 0.048,
-    copy: "a USDC vault",
+  kamino: {
+    name: "Kamino Finance",
+    label: "SOL lending route",
+    apy: 0.1234,
+    copy: "Kamino Finance",
   },
-  index: {
-    name: "Crypto Index",
-    label: "Diversified crypto basket",
-    apy: 0.114,
-    copy: "a crypto index",
+  jito: {
+    name: "Jito Restaking",
+    label: "Liquid staking allocation",
+    apy: 0.088,
+    copy: "Jito Restaking",
   },
 };
 
 const state = {
-  amount: 42.8,
-  addOn: 1,
-  destination: "staking",
+  amount: 100,
+  addOn: 0.025,
+  destination: "highest",
   transactionsPerDay: 12,
 };
 
@@ -61,8 +61,8 @@ const amountMin = Math.max(
   Number(amountRange?.min || 0.01),
 );
 const amountMax = Math.max(
-  Number(amountInput?.max || 1000),
-  Number(amountRange?.max || 1000),
+  Number(amountInput?.max || 5000),
+  Number(amountRange?.max || 5000),
 );
 
 const countMin = Math.max(
@@ -88,6 +88,14 @@ function formatCurrency(value) {
     currency: "USD",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
+  }).format(value);
+}
+
+function formatPercent(value) {
+  return new Intl.NumberFormat("en-US", {
+    style: "percent",
+    minimumFractionDigits: value < 0.01 ? 1 : 0,
+    maximumFractionDigits: 1,
   }).format(value);
 }
 
@@ -118,15 +126,22 @@ function updateActiveState(collection, value, attribute) {
   });
 }
 
+function setText(element, value) {
+  if (element) {
+    element.textContent = value;
+  }
+}
+
 function renderSimulator() {
   const destination = destinations[state.destination];
-  const addOn = state.addOn;
-  const transactionTotal = state.amount + addOn;
-  const dailyContribution = addOn * state.transactionsPerDay;
+  const rate = state.addOn;
+  const autoInvestAmount = state.amount * rate;
+  const transactionTotal = state.amount + autoInvestAmount;
+  const dailyContribution = autoInvestAmount * state.transactionsPerDay;
   const monthlyContribution = dailyContribution * 30;
   const annualContribution = dailyContribution * 365;
   const projectedValue = futureValueWithDailyContributions(dailyContribution, destination.apy);
-  const annualYield = projectedValue - annualContribution;
+  const annualRewards = projectedValue - annualContribution;
 
   if (amountInput) {
     amountInput.value = state.amount.toFixed(2);
@@ -146,33 +161,35 @@ function renderSimulator() {
     setSliderProgress(countRange, state.transactionsPerDay, countMin, countMax);
   }
 
-  addonOutput.textContent = `${formatCurrency(addOn)} added`;
-  addonNote.textContent = `Helio adds ${formatCurrency(addOn)} to a ${formatCurrency(
-    state.amount,
-  )} transaction and routes it to ${destination.copy}.`;
-  totalOutput.textContent = formatCurrency(transactionTotal);
-  monthlyOutput.textContent = formatCurrency(monthlyContribution);
-  annualOutput.textContent = formatCurrency(annualYield);
-  annualNote.textContent = `Mock projection based on ${(destination.apy * 100).toFixed(
-    1,
-  )}% APY and ${state.transactionsPerDay} daily add-ons.`;
+  setText(addonOutput, `${formatCurrency(autoInvestAmount)} invested`);
+  setText(
+    addonNote,
+    `Helio sets aside ${formatPercent(rate)} of a ${formatCurrency(state.amount)} transaction and routes it to ${destination.copy}.`,
+  );
+  setText(totalOutput, formatCurrency(transactionTotal));
+  setText(monthlyOutput, formatCurrency(monthlyContribution));
+  setText(annualOutput, formatCurrency(annualRewards));
+  setText(
+    annualNote,
+    `Mock projection based on ${(destination.apy * 100).toFixed(1)}% APY and ${state.transactionsPerDay} daily auto-investments.`,
+  );
 
-  routeBadge.textContent = destination.name;
-  flowSpend.textContent = formatCurrency(state.amount);
-  flowAddon.textContent = formatCurrency(addOn);
-  flowTotal.textContent = formatCurrency(transactionTotal);
-  flowApy.textContent = `${(destination.apy * 100).toFixed(1)}% APY`;
-  principalOutput.textContent = formatCurrency(annualContribution);
-  portfolioOutput.textContent = formatCurrency(projectedValue);
-  destinationCopy.textContent = destination.label;
+  setText(routeBadge, destination.name);
+  setText(flowSpend, formatCurrency(state.amount));
+  setText(flowAddon, formatCurrency(autoInvestAmount));
+  setText(flowTotal, formatCurrency(transactionTotal));
+  setText(flowApy, `${(destination.apy * 100).toFixed(1)}% APY`);
+  setText(principalOutput, formatCurrency(annualContribution));
+  setText(portfolioOutput, formatCurrency(projectedValue));
+  setText(destinationCopy, destination.label);
 
-  mockupSpend.textContent = formatCurrency(state.amount);
-  mockupAddon.textContent = formatCurrency(addOn);
-  mockupTotal.textContent = formatCurrency(transactionTotal);
-  mockupRoute.textContent = destination.name;
-  mockupMonthly.textContent = formatCurrency(monthlyContribution);
+  setText(mockupSpend, formatCurrency(state.amount));
+  setText(mockupAddon, `+${formatCurrency(autoInvestAmount)}`);
+  setText(mockupTotal, formatCurrency(transactionTotal));
+  setText(mockupRoute, destination.name);
+  setText(mockupMonthly, formatCurrency(monthlyContribution));
 
-  updateActiveState(addOnButtons, String(addOn), "addon");
+  updateActiveState(addOnButtons, String(rate), "addon");
   updateActiveState(destinationButtons, state.destination, "destination");
   updateActiveState(destinationCards, state.destination, "destinationCard");
 }
@@ -243,34 +260,41 @@ waitlistForm?.addEventListener("submit", (event) => {
   const email = String(formData.get("email") || "").trim();
 
   if (!email) {
-    feedback.textContent = "Enter an email address to join the Helio beta.";
+    setText(feedback, "Enter an email address to join the Helio beta.");
     return;
   }
 
-  feedback.textContent = `You're on the list, ${email}. We'll send Helio beta access soon.`;
+  setText(feedback, `You're on the list, ${email}. We'll send Helio beta access soon.`);
   waitlistForm.reset();
 });
 
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
+const revealObserver = "IntersectionObserver" in window
+  ? new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
 
-      entry.target.classList.add("is-visible");
-      revealObserver.unobserve(entry.target);
-    });
-  },
-  {
-    threshold: 0.14,
-    rootMargin: "0px 0px -36px 0px",
-  },
-);
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -36px 0px",
+      },
+    )
+  : null;
 
 document.querySelectorAll(".reveal").forEach((element, index) => {
   element.style.transitionDelay = `${Math.min(index * 35, 180)}ms`;
-  revealObserver.observe(element);
+
+  if (revealObserver) {
+    revealObserver.observe(element);
+  } else {
+    element.classList.add("is-visible");
+  }
 });
 
 renderSimulator();

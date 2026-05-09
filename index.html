@@ -1,609 +1,862 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Helio is a Solana wallet that adds a small default amount to every transaction and routes it into user-selected growth strategies."
-    />
-    <title>Helio Wallet | Add a Little. Grow Every Transaction.</title>
-    <link rel="icon" type="image/svg+xml" sizes="any" href="Assets/illustration-logo-transparent.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="Assets/illustration-logo-transparent.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav-shell">
-        <a class="brand" href="#home" aria-label="Helio home">
-          <img
-            class="brand-logo-img"
-            src="Assets/full-logo-transparent.png"
-            alt="Helio"
-            width="1089"
-            height="433"
-          />
-        </a>
-
-        <nav class="site-nav" aria-label="Primary navigation">
-          <a href="#wallet">Wallet</a>
-          <a href="#simulator">Simulator</a>
-          <a href="#strategies">Strategies</a>
-          <a href="#security">Security</a>
-        </nav>
-
-        <a class="nav-cta" href="#waitlist">Install Beta</a>
-      </div>
-    </header>
-
-    <main>
-      <section class="hero" id="home">
-        <div class="container hero-layout">
-          <div class="hero-copy">
-            <div class="eyebrow reveal">
-              <span class="eyebrow-mark" aria-hidden="true"></span>
-              Solana wallet add-ons
-            </div>
-
-            <h1 class="reveal">
-              The wallet that grows with every transaction
-            </h1>
-
-            <p class="hero-subhead reveal">
-              Helio adds a small amount to every send, swap, or payment by default.
-              Start with $0.50 to $2.00 per transaction, then route that add-on
-              into staking, tokenized assets, or diversified crypto exposure.
-            </p>
-
-            <div class="hero-actions reveal">
-              <a class="button button-primary" href="#waitlist">Install Beta</a>
-              <a class="button button-secondary" href="#simulator">Try the add-on</a>
-            </div>
-
-            <div class="hero-facts reveal" aria-label="Helio product facts">
-              <div>
-                <strong>$0.50-$2.00</strong>
-                <span>default add-on range</span>
-              </div>
-              <div>
-                <strong>Self-custody</strong>
-                <span>keys stay with the wallet owner</span>
-              </div>
-              <div>
-                <strong>Solana-native</strong>
-                <span>built for fast low-cost transactions</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-product reveal" aria-label="Helio wallet product preview">
-            <div class="product-backplate" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-
-            <div class="extension-window">
-              <div class="extension-topbar">
-                <div class="window-controls" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <span>Helio Extension</span>
-              </div>
-
-              <div class="wallet-panel">
-                <div class="wallet-header">
-                  <div class="wallet-brand">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Helio is a crypto wallet extension that automatically saves and invests a small percentage of every transaction."
+        />
+        <title>Helio Wallet | Crypto, Auto-Invested.</title>
+        <link
+            rel="icon"
+            type="image/svg+xml"
+            sizes="any"
+            href="Assets/mascot-glow.svg"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="Assets/illustration-logo-transparent.svg"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <div class="container nav-shell">
+                <a class="brand" href="#home" aria-label="Helio home">
                     <img
-                      class="wallet-brand-logo"
-                      src="Assets/full-logo-transparent.png"
-                      alt=""
-                      width="1089"
-                      height="433"
+                        class="brand-mark-img"
+                        src="Assets/mascot-glow.svg"
+                        alt=""
+                        aria-hidden="true"
                     />
-                    <div>
-                      <span>Active wallet</span>
-                      <strong>Helio Main</strong>
+                    <span>helio</span>
+                </a>
+
+                <nav class="site-nav" aria-label="Primary navigation">
+                    <a href="#extension">Extension</a>
+                    <a href="#auto-invest">Auto-Invest</a>
+                    <a href="#simulator">Simulator</a>
+                    <a href="#security">Security</a>
+                </nav>
+
+                <a class="nav-cta" href="#waitlist">Get early access</a>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero" id="home">
+                <div class="container hero-layout">
+                    <div class="hero-copy reveal">
+                        <div class="eyebrow">
+                            <span class="eyebrow-dot" aria-hidden="true"></span>
+                            Web extension concept
+                        </div>
+
+                        <h1>Crypto,<br /><span>Auto-Invested.</span></h1>
+
+                        <p class="hero-subhead">
+                            Helio turns ordinary sends, swaps, buys, and
+                            receives into automatic investing moments. You
+                            transact as usual, Helio sets aside a tiny
+                            percentage, then routes it into the best available
+                            on-chain opportunity.
+                        </p>
+
+                        <div class="hero-actions">
+                            <a class="button button-primary" href="#extension"
+                                >View extension UI</a
+                            >
+                            <a class="button button-secondary" href="#simulator"
+                                >Try the model</a
+                            >
+                        </div>
+
+                        <div
+                            class="hero-metrics"
+                            aria-label="Helio product highlights"
+                        >
+                            <div>
+                                <strong>2.5%</strong>
+                                <span>default auto-invest rate</span>
+                            </div>
+                            <div>
+                                <strong>Every tx</strong>
+                                <span>send, swap, receive, or buy</span>
+                            </div>
+                            <div>
+                                <strong>PDA vault</strong>
+                                <span>on-chain allocation layer</span>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <span class="network-pill">Solana</span>
+
+                    <div
+                        class="hero-showcase reveal"
+                        aria-label="Helio extension preview"
+                    >
+                        <div
+                            class="glow-orb glow-orb-lime"
+                            aria-hidden="true"
+                        ></div>
+                        <div
+                            class="glow-orb glow-orb-blue"
+                            aria-hidden="true"
+                        ></div>
+
+                        <article class="phone phone-onboarding">
+                            <div class="phone-logo">
+                                <img
+                                    class="phone-logo-img"
+                                    src="Assets/mascot-glow.svg"
+                                    alt=""
+                                    aria-hidden="true"
+                                />
+                                helio
+                            </div>
+                            <div class="onboarding-headline">
+                                crypto,<br /><span>auto-invested.</span>
+                            </div>
+                            <p>
+                                Every transaction grows your future.
+                                Automatically.
+                            </p>
+                            <img
+                                src="Assets/mascot-glow.svg"
+                                alt=""
+                                class="phone-mascot"
+                            />
+                            <div class="pager" aria-hidden="true">
+                                <span></span><span></span><span></span>
+                            </div>
+                            <button type="button">Create New Wallet</button>
+                            <a href="#waitlist">Import Existing Wallet</a>
+                        </article>
+
+                        <article class="phone phone-home light">
+                            <div class="phone-topline">
+                                <span class="phone-logo dark">
+                                    <img
+                                        class="phone-logo-img"
+                                        src="Assets/mascot-glow.svg"
+                                        alt=""
+                                        aria-hidden="true"
+                                    />
+                                    helio
+                                </span>
+                                <span>⌗</span>
+                            </div>
+                            <p>Total Portfolio Value</p>
+                            <h3>$12,458.67</h3>
+                            <span class="gain">+5.23% 24h</span>
+                            <div class="chart-line" aria-hidden="true"></div>
+                            <div class="stat-card">
+                                <span>Total Amount Invested</span>
+                                <strong>$4,215.71</strong>
+                                <small>+18.42%</small>
+                            </div>
+                            <div class="stat-card">
+                                <span>Interest Gained</span>
+                                <strong>$215.34</strong>
+                                <small>+12.31%</small>
+                            </div>
+                            <div class="auto-card">
+                                <div>
+                                    <strong>Auto-Investment</strong
+                                    ><span
+                                        >A portion of every transaction is
+                                        invested for highest APY.</span
+                                    >
+                                </div>
+                                <img
+                                    src="Assets/glow-mascot-logo1.jpg"
+                                    alt=""
+                                />
+                            </div>
+                            <div class="bottom-nav">
+                                <span>⌂</span><span>⟳</span><span>▥</span
+                                ><span>◇</span><span>⚙</span>
+                            </div>
+                        </article>
+
+                        <article class="phone phone-invest dark-panel">
+                            <div class="back-row">← <span>Invest</span></div>
+                            <p>Total Amount Invested</p>
+                            <h3>$4,215.71 <small>+18.42%</small></h3>
+                            <div class="invest-card">
+                                <span>Current Allocation</span>
+                                <div class="strategy-row">
+                                    <strong>Highest APY Strategy</strong
+                                    ><b>13.27%</b>
+                                </div>
+                                <div class="progress">
+                                    <span style="width: 72%"></span>
+                                </div>
+                            </div>
+                            <div class="invest-card vault-card">
+                                <span>On-Chain Vault (PDA)</span>
+                                <div><strong>Network</strong><b>Solana</b></div>
+                                <div>
+                                    <strong>Total Value Locked</strong
+                                    ><b>$4,215.71</b>
+                                </div>
+                            </div>
+                            <button type="button">View Vault</button>
+                            <div class="bottom-nav">
+                                <span>⌂</span><span>⟳</span
+                                ><span class="active">●</span><span>▥</span
+                                ><span>⚙</span>
+                            </div>
+                        </article>
+                    </div>
                 </div>
+            </section>
 
-                <div class="balance-strip">
-                  <span>Portfolio balance</span>
-                  <strong>$8,426.18</strong>
-                  <small>Includes routed transaction add-ons</small>
+            <section class="extension-section section" id="extension">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-label">Extension screens</span>
+                        <h2>
+                            Designed around the wallet surfaces you already
+                            mocked up.
+                        </h2>
+                        <p>
+                            The website now mirrors the new extension direction:
+                            rounded mobile panels, black and white surfaces,
+                            lime actions, visible auto-invest rows, and the
+                            glowing Helio mascot as the product anchor.
+                        </p>
+                    </div>
+
+                    <div class="screen-gallery">
+                        <article class="mini-screen light reveal">
+                            <div class="mini-top">
+                                <strong>Activity</strong><span>⌯</span>
+                            </div>
+                            <div class="tabs">
+                                <span class="active">All</span
+                                ><span>Transactions</span
+                                ><span>Investments</span>
+                            </div>
+                            <div class="feed-row positive">
+                                <b>Auto-Investment</b><span>+0.00245 SOL</span
+                                ><small>From Swap</small>
+                            </div>
+                            <div class="feed-row">
+                                <b>Swap</b><span>-100 USDC</span
+                                ><small>To BTC</small>
+                            </div>
+                            <div class="feed-row positive">
+                                <b>Received</b><span>+0.25 BTC</span
+                                ><small>Auto-invested</small>
+                            </div>
+                            <div class="bottom-nav">
+                                <span>⌂</span><span class="active">⟳</span
+                                ><span>▥</span><span>◇</span><span>⚙</span>
+                            </div>
+                        </article>
+
+                        <article class="mini-screen dark reveal">
+                            <div class="mini-top">
+                                <strong>Wallets</strong><span>＋</span>
+                            </div>
+                            <div class="wallet-card blue">
+                                <span>Main Wallet</span
+                                ><strong>$12,458.67</strong
+                                ><small>5 Assets</small>
+                            </div>
+                            <div class="wallet-card red">
+                                <span>Trading Wallet</span
+                                ><strong>$2,345.12</strong
+                                ><small>3 Assets</small>
+                            </div>
+                            <div class="wallet-card lime">
+                                <span>Savings Wallet</span
+                                ><strong>$1,234.98</strong
+                                ><small>2 Assets</small>
+                            </div>
+                            <div class="add-wallet">
+                                Add New Wallet <span>＋</span>
+                            </div>
+                        </article>
+
+                        <article class="mini-screen dark reveal">
+                            <div class="mini-top">
+                                <strong>Swap</strong><span>⇵</span>
+                            </div>
+                            <label>You pay</label>
+                            <div class="swap-box">
+                                <strong>100</strong><span>USDC⌄</span>
+                            </div>
+                            <div class="swap-toggle">⇅</div>
+                            <label>You receive</label>
+                            <div class="swap-box">
+                                <strong>~ 0.03125</strong><span>BTC⌄</span>
+                            </div>
+                            <div class="auto-invest-row">
+                                <span>Auto-Investment</span><b>+$0.50</b>
+                            </div>
+                            <button type="button">Review Swap</button>
+                        </article>
+
+                        <article class="mini-screen light reveal">
+                            <div class="mini-top">
+                                <strong>Auto-Investment</strong><span></span>
+                            </div>
+                            <img
+                                src="Assets/glow-mascot-logo1.jpg"
+                                alt=""
+                                class="diagram-mascot"
+                            />
+                            <div class="flow-diagram">
+                                <span>You spend</span><b>↓</b
+                                ><span>We save</span><b>↓</b
+                                ><span>We invest</span>
+                            </div>
+                            <ol class="steps-list">
+                                <li>You make a transaction.</li>
+                                <li>We set aside a small %.</li>
+                                <li>We invest for highest APY.</li>
+                            </ol>
+                            <button type="button">Manage Settings</button>
+                        </article>
+
+                        <article class="mini-screen lime-screen reveal">
+                            <div class="mini-top">
+                                <strong></strong><span></span>
+                            </div>
+                            <h3>Enter PIN</h3>
+                            <div class="pin-dots">
+                                <span></span><span></span><span></span
+                                ><span></span>
+                            </div>
+                            <div class="keypad">
+                                <span>1</span><span>2</span><span>3</span
+                                ><span>4</span><span>5</span><span>6</span
+                                ><span>7</span><span>8</span><span>9</span
+                                ><span>◉</span><span>0</span><span>⌫</span>
+                            </div>
+                        </article>
+                    </div>
                 </div>
+            </section>
 
-                <div class="transaction-preview">
-                  <div class="preview-title">
-                    <span>Send preview</span>
-                    <strong>Before you sign</strong>
-                  </div>
-                  <div class="preview-row">
-                    <span>Transaction</span>
-                    <strong id="mockup-spend">$42.80</strong>
-                  </div>
-                  <div class="preview-row add-on">
-                    <span>Helio add-on</span>
-                    <strong id="mockup-addon">$1.00</strong>
-                  </div>
-                  <div class="preview-row">
-                    <span>Network estimate</span>
-                    <strong>&lt;$0.01</strong>
-                  </div>
-                  <div class="preview-total">
-                    <span>Total before approval</span>
-                    <strong id="mockup-total">$43.80</strong>
-                  </div>
+            <section class="auto-invest-section section" id="auto-invest">
+                <div class="container auto-invest-layout">
+                    <div class="section-heading compact reveal">
+                        <span class="section-label">Auto-Investment</span>
+                        <h2>You transact. Helio saves. Helio invests.</h2>
+                        <p>
+                            The core product story is now the same as the
+                            extension screens: a tiny transaction percentage is
+                            moved into an on-chain PDA vault, then allocated to
+                            a managed highest-APY strategy.
+                        </p>
+                    </div>
+
+                    <div class="process-card reveal">
+                        <img
+                            src="Assets/glow-mascot-logo.jpg"
+                            alt="Helio mascot"
+                        />
+                        <div class="process-grid">
+                            <div>
+                                <span>01</span
+                                ><strong>You make a transaction</strong>
+                                <p>
+                                    Send, swap, receive, or buy from the wallet.
+                                </p>
+                            </div>
+                            <div>
+                                <span>02</span
+                                ><strong>We set aside a small %</strong>
+                                <p>
+                                    The auto-invest amount is visible before
+                                    approval.
+                                </p>
+                            </div>
+                            <div>
+                                <span>03</span
+                                ><strong>We invest for highest APY</strong>
+                                <p>
+                                    Funds route into the selected on-chain
+                                    strategy.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="route-preview">
-                  <div>
-                    <span>Auto-route</span>
-                    <strong id="mockup-route">SOL Staking</strong>
-                  </div>
-                  <div>
-                    <span>Projected monthly add-ons</span>
-                    <strong id="mockup-monthly">$360.00</strong>
-                  </div>
+            <section class="simulator-section section" id="simulator">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-label">Live Simulator</span>
+                        <h2>Model the auto-invest rate.</h2>
+                        <p>
+                            Choose a transaction amount, activity level,
+                            auto-invest rate, and destination. The extension
+                            preview and yearly projection update instantly.
+                        </p>
+                    </div>
+
+                    <div class="simulator-tool">
+                        <div class="simulator-controls reveal">
+                            <div class="control-group">
+                                <label for="transaction-amount"
+                                    >Transaction amount</label
+                                >
+                                <div class="amount-input-shell">
+                                    <span>$</span>
+                                    <input
+                                        id="transaction-amount"
+                                        name="transaction-amount"
+                                        type="number"
+                                        min="0.01"
+                                        max="5000"
+                                        step="0.01"
+                                        value="100.00"
+                                    />
+                                </div>
+                                <input
+                                    id="transaction-range"
+                                    type="range"
+                                    min="0.01"
+                                    max="5000"
+                                    step="0.01"
+                                    value="100.00"
+                                    aria-label="Transaction amount slider"
+                                />
+                            </div>
+
+                            <div class="control-group">
+                                <label for="transaction-count"
+                                    >Transactions per day</label
+                                >
+                                <div class="stepper-row">
+                                    <input
+                                        id="transaction-count"
+                                        name="transaction-count"
+                                        type="number"
+                                        min="1"
+                                        max="80"
+                                        step="1"
+                                        value="12"
+                                    />
+                                    <span>daily wallet actions</span>
+                                </div>
+                                <input
+                                    id="transaction-count-range"
+                                    type="range"
+                                    min="1"
+                                    max="80"
+                                    step="1"
+                                    value="12"
+                                    aria-label="Transactions per day slider"
+                                />
+                            </div>
+
+                            <div class="control-group">
+                                <span class="control-label"
+                                    >Auto-invest rate</span
+                                >
+                                <div
+                                    class="pill-group"
+                                    role="group"
+                                    aria-label="Auto-invest rate"
+                                >
+                                    <button
+                                        class="addon-pill"
+                                        data-addon="0.005"
+                                        type="button"
+                                    >
+                                        0.5%
+                                    </button>
+                                    <button
+                                        class="addon-pill"
+                                        data-addon="0.01"
+                                        type="button"
+                                    >
+                                        1%
+                                    </button>
+                                    <button
+                                        class="addon-pill active"
+                                        data-addon="0.025"
+                                        type="button"
+                                    >
+                                        2.5%
+                                    </button>
+                                    <button
+                                        class="addon-pill"
+                                        data-addon="0.05"
+                                        type="button"
+                                    >
+                                        5%
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <span class="control-label">Invest into</span>
+                                <div
+                                    class="destination-switcher"
+                                    aria-label="Investment destination"
+                                >
+                                    <button
+                                        class="destination-pill active"
+                                        data-destination="highest"
+                                        type="button"
+                                    >
+                                        <span>Highest APY Strategy</span>
+                                        <small>Managed by Helio</small>
+                                    </button>
+                                    <button
+                                        class="destination-pill"
+                                        data-destination="kamino"
+                                        type="button"
+                                    >
+                                        <span>Kamino Finance</span>
+                                        <small>SOL lending route</small>
+                                    </button>
+                                    <button
+                                        class="destination-pill"
+                                        data-destination="jito"
+                                        type="button"
+                                    >
+                                        <span>Jito Restaking</span>
+                                        <small>Liquid staking allocation</small>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="simulator-results reveal">
+                            <div class="extension-preview-card">
+                                <div class="mock-phone-header">
+                                    <span>Swap</span><b>●●●</b>
+                                </div>
+                                <div class="mock-line">
+                                    <span>You pay</span
+                                    ><strong id="mockup-spend">$100.00</strong>
+                                </div>
+                                <div class="mock-line received">
+                                    <span>You receive</span
+                                    ><strong>~ 0.03125 BTC</strong>
+                                </div>
+                                <div class="mock-auto">
+                                    <span>Auto-Investment</span
+                                    ><strong id="mockup-addon">+$2.50</strong>
+                                </div>
+                                <div class="mock-line">
+                                    <span>Network fee</span
+                                    ><strong>&lt;$0.01</strong>
+                                </div>
+                                <div class="mock-line total">
+                                    <span>Total before approval</span
+                                    ><strong id="mockup-total">$102.50</strong>
+                                </div>
+                                <div class="mock-route">
+                                    <span>Invest into</span
+                                    ><strong id="mockup-route"
+                                        >Highest APY Strategy</strong
+                                    >
+                                </div>
+                                <div class="mock-route">
+                                    <span>Projected monthly auto-invest</span
+                                    ><strong id="mockup-monthly"
+                                        >$900.00</strong
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="result-primary">
+                                <span>This transaction</span>
+                                <h3 id="addon-output">$2.50 invested</h3>
+                                <p id="addon-note">
+                                    Helio sets aside 2.5% of a $100.00
+                                    transaction and routes it to Highest APY
+                                    Strategy.
+                                </p>
+                            </div>
+
+                            <div class="result-grid">
+                                <div class="result-card">
+                                    <span>Total before approval</span
+                                    ><strong id="total-output">$102.50</strong>
+                                </div>
+                                <div class="result-card">
+                                    <span>Projected monthly auto-invest</span
+                                    ><strong id="monthly-output"
+                                        >$900.00</strong
+                                    >
+                                </div>
+                                <div class="result-card">
+                                    <span>Estimated annual rewards</span
+                                    ><strong id="annual-output"
+                                        >$1,433.91</strong
+                                    >
+                                </div>
+                            </div>
+
+                            <div class="route-engine">
+                                <div class="engine-header">
+                                    <div>
+                                        <span>Routing engine</span>
+                                        <strong id="route-badge"
+                                            >Highest APY Strategy</strong
+                                        >
+                                    </div>
+                                    <span id="flow-apy">13.3% APY</span>
+                                </div>
+
+                                <div class="flow-list">
+                                    <div class="flow-step">
+                                        <span>Payment</span
+                                        ><strong id="flow-spend"
+                                            >$100.00</strong
+                                        >
+                                    </div>
+                                    <div class="flow-step">
+                                        <span>Auto-invest</span
+                                        ><strong id="flow-addon">$2.50</strong>
+                                    </div>
+                                    <div class="flow-step">
+                                        <span>Total</span
+                                        ><strong id="flow-total"
+                                            >$102.50</strong
+                                        >
+                                    </div>
+                                </div>
+
+                                <div class="projection-panel">
+                                    <div>
+                                        <span>Annual auto-invested</span
+                                        ><strong id="principal-output"
+                                            >$10,950.00</strong
+                                        >
+                                    </div>
+                                    <div>
+                                        <span>Projected 12 mo value</span
+                                        ><strong id="portfolio-output"
+                                            >$12,383.91</strong
+                                        >
+                                    </div>
+                                    <div>
+                                        <span>Chosen route</span
+                                        ><strong id="destination-copy"
+                                            >Managed by Helio</strong
+                                        >
+                                    </div>
+                                </div>
+
+                                <p id="annual-note" class="simulator-footnote">
+                                    Mock projection based on 13.3% APY and 12
+                                    daily auto-investments.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </section>
 
-                <div class="wallet-actions" aria-hidden="true">
-                  <span>Review</span>
-                  <span>Sign</span>
+            <section class="strategies-section section" id="strategies">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <span class="section-label">Allocation layer</span>
+                        <h2>The settings screen becomes a growth dashboard.</h2>
+                        <p>
+                            Users can keep the default highest-APY mode or
+                            choose a protocol-specific route. The active
+                            destination is always reflected inside transaction
+                            details and auto-invest settings.
+                        </p>
+                    </div>
+
+                    <div class="strategy-grid">
+                        <article
+                            class="strategy-card active reveal"
+                            data-destination-card="highest"
+                            role="button"
+                            tabindex="0"
+                            aria-label="Select Highest APY Strategy"
+                        >
+                            <div class="strategy-top">
+                                <span class="strategy-icon">✦</span
+                                ><strong>13.27% APY</strong>
+                            </div>
+                            <h3>Highest APY Strategy</h3>
+                            <p>
+                                Dynamically allocates to the highest-yielding
+                                opportunities.
+                            </p>
+                            <small>Managed by Helio</small>
+                        </article>
+
+                        <article
+                            class="strategy-card reveal"
+                            data-destination-card="kamino"
+                            role="button"
+                            tabindex="0"
+                            aria-label="Select Kamino Finance"
+                        >
+                            <div class="strategy-top">
+                                <span class="strategy-icon">K</span
+                                ><strong>12.34% APY</strong>
+                            </div>
+                            <h3>Kamino Finance</h3>
+                            <p>
+                                A Solana-native lending route for automated
+                                vault allocations.
+                            </p>
+                            <small>SOL allocation</small>
+                        </article>
+
+                        <article
+                            class="strategy-card reveal"
+                            data-destination-card="jito"
+                            role="button"
+                            tabindex="0"
+                            aria-label="Select Jito Restaking"
+                        >
+                            <div class="strategy-top">
+                                <span class="strategy-icon">J</span
+                                ><strong>8.80% APY</strong>
+                            </div>
+                            <h3>Jito Restaking</h3>
+                            <p>
+                                Liquid staking exposure for users who want
+                                familiar SOL yield.
+                            </p>
+                            <small>Restaking route</small>
+                        </article>
+                    </div>
                 </div>
-              </div>
-            </div>
+            </section>
 
-            <div class="mini-card mini-card-top">
-              <span>Default rule</span>
-              <strong>$0.50 to $2.00</strong>
-            </div>
-            <div class="mini-card mini-card-bottom">
-              <span>Custom cap</span>
-              <strong>Set higher after setup</strong>
-            </div>
-          </div>
-        </div>
-      </section>
+            <section class="security-section section" id="security">
+                <div class="container security-layout">
+                    <div class="security-copy reveal">
+                        <span class="section-label">Security</span>
+                        <h2>Visible controls before every signature.</h2>
+                        <p>
+                            Helio should feel automatic, never hidden. Every
+                            send and swap screen shows the base transaction, the
+                            auto-invest amount, network fee, slippage, and
+                            destination before approval.
+                        </p>
+                    </div>
 
-      <section class="brand-rail" aria-label="Helio color system">
-        <div class="container brand-rail-grid">
-          <span>Electric Lime</span>
-          <span>Deep Royal Blue</span>
-          <span>Vivid Red</span>
-          <span>Jet Black</span>
-          <span>Pure White</span>
-        </div>
-      </section>
-
-      <section class="wallet-section section" id="wallet">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-label">Wallet Layer</span>
-            <h2>A Solana wallet first. Wealth automation second.</h2>
-            <p>
-              Helio keeps the core wallet experience familiar: balances, sends,
-              swaps, dapp approvals, and security checks. The difference is the
-              optional add-on rule attached to every transaction.
-            </p>
-          </div>
-
-          <div class="wallet-grid">
-            <article class="wallet-tile tile-dark reveal">
-              <span class="tile-index">01</span>
-              <h3>Send and swap normally</h3>
-              <p>
-                Keep the transaction flow direct. Helio shows the payment, the
-                add-on, the estimated network fee, and the total before signing.
-              </p>
-            </article>
-
-            <article class="wallet-tile tile-blue reveal">
-              <span class="tile-index">02</span>
-              <h3>Attach a small add-on</h3>
-              <p>
-                Use the default $0.50, $1.00, $1.50, or $2.00 rule. Larger
-                custom limits can be configured by advanced users.
-              </p>
-            </article>
-
-            <article class="wallet-tile tile-white reveal">
-              <span class="tile-index">03</span>
-              <h3>Route automatically</h3>
-              <p>
-                Pick where the add-on should go. Helio routes small amounts into
-                the strategy you choose without turning every payment into a task.
-              </p>
-            </article>
-
-            <article class="wallet-tile tile-red reveal">
-              <span class="tile-index">04</span>
-              <h3>Pause whenever needed</h3>
-              <p>
-                The add-on is always visible and always controlled by the user.
-                Pause it, lower it, or change the route from the wallet surface.
-              </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="simulator-section section" id="simulator">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-label">Live Simulator</span>
-            <h2>Model the transaction add-on.</h2>
-            <p>
-              Choose a payment amount, daily transaction pace, add-on amount, and
-              destination. The preview updates the wallet mockup and the annual
-              projection in real time.
-            </p>
-          </div>
-
-          <div class="simulator-tool">
-            <div class="simulator-controls reveal">
-              <div class="control-group">
-                <label for="transaction-amount">Transaction amount</label>
-                <div class="amount-input-shell">
-                  <span>$</span>
-                  <input
-                    id="transaction-amount"
-                    name="transaction-amount"
-                    type="number"
-                    min="0.01"
-                    max="1000"
-                    step="0.01"
-                    value="42.80"
-                  />
+                    <div class="security-list reveal">
+                        <div>
+                            <strong>On-chain PDA vault</strong
+                            ><span
+                                >Auto-invested funds are tracked in a dedicated
+                                vault surface.</span
+                            >
+                        </div>
+                        <div>
+                            <strong>Toggle from settings</strong
+                            ><span
+                                >Users can pause auto-investment or change the
+                                rate at any time.</span
+                            >
+                        </div>
+                        <div>
+                            <strong>Line-item clarity</strong
+                            ><span
+                                >Transaction details show exactly how much was
+                                invested.</span
+                            >
+                        </div>
+                        <div>
+                            <strong>Solana network focus</strong
+                            ><span
+                                >The design consistently communicates network,
+                                fee, and route.</span
+                            >
+                        </div>
+                    </div>
                 </div>
-                <input
-                  id="transaction-range"
-                  type="range"
-                  min="0.01"
-                  max="1000"
-                  step="0.01"
-                  value="42.80"
-                  aria-label="Transaction amount slider"
-                />
-              </div>
+            </section>
 
-              <div class="control-group">
-                <label for="transaction-count">Transactions per day</label>
-                <div class="stepper-row">
-                  <input
-                    id="transaction-count"
-                    name="transaction-count"
-                    type="number"
-                    min="1"
-                    max="80"
-                    step="1"
-                    value="12"
-                  />
-                  <span>daily signed transactions</span>
+            <section class="waitlist-section section" id="waitlist">
+                <div class="container waitlist-layout reveal">
+                    <div class="waitlist-copy">
+                        <span class="section-label">Beta Access</span>
+                        <h2>
+                            Launch the extension with the new Helio visual
+                            system.
+                        </h2>
+                        <p>
+                            Join the beta list for product updates, prototype
+                            testing, and launch notes as the extension moves
+                            from concept screens into a working wallet
+                            experience.
+                        </p>
+                    </div>
+
+                    <form class="waitlist-form" id="waitlist-form">
+                        <label class="sr-only" for="waitlist-email"
+                            >Email address</label
+                        >
+                        <input
+                            id="waitlist-email"
+                            name="email"
+                            type="email"
+                            placeholder="Email address"
+                            autocomplete="email"
+                            required
+                        />
+                        <button class="button button-primary" type="submit">
+                            Join Beta
+                        </button>
+                        <p class="form-caption">
+                            No spam. Early access and launch notes only.
+                        </p>
+                        <p
+                            class="form-feedback"
+                            id="form-feedback"
+                            aria-live="polite"
+                        ></p>
+                    </form>
                 </div>
-                <input
-                  id="transaction-count-range"
-                  type="range"
-                  min="1"
-                  max="80"
-                  step="1"
-                  value="12"
-                  aria-label="Transactions per day slider"
-                />
-              </div>
+            </section>
+        </main>
 
-              <div class="control-group">
-                <span class="control-label">Default add-on amount</span>
-                <div class="pill-group" role="group" aria-label="Default add-on amount">
-                  <button class="addon-pill" data-addon="0.5" type="button">$0.50</button>
-                  <button class="addon-pill active" data-addon="1" type="button">$1.00</button>
-                  <button class="addon-pill" data-addon="1.5" type="button">$1.50</button>
-                  <button class="addon-pill" data-addon="2" type="button">$2.00</button>
+        <footer class="site-footer">
+            <div class="container footer-layout">
+                <a
+                    class="brand footer-brandmark"
+                    href="#home"
+                    aria-label="Helio home"
+                >
+                    <img
+                        class="brand-mark-img"
+                        src="Assets/mascot-glow.svg"
+                        alt=""
+                        aria-hidden="true"
+                    />
+                    <span>helio</span>
+                </a>
+                <div class="footer-links" aria-label="Footer navigation">
+                    <a href="#extension">Extension</a>
+                    <a href="#auto-invest">Auto-Invest</a>
+                    <a href="#simulator">Simulator</a>
+                    <a href="#security">Security</a>
                 </div>
-              </div>
-
-              <div class="control-group">
-                <span class="control-label">Route add-ons into</span>
-                <div class="destination-switcher" aria-label="Investment destination">
-                  <button class="destination-pill active" data-destination="staking" type="button">
-                    <span>SOL Staking</span>
-                    <small>Native compounding</small>
-                  </button>
-                  <button class="destination-pill" data-destination="vault" type="button">
-                    <span>USDC Vault</span>
-                    <small>Lower-volatility reserve</small>
-                  </button>
-                  <button class="destination-pill" data-destination="index" type="button">
-                    <span>Crypto Index</span>
-                    <small>Diversified upside</small>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="simulator-results reveal">
-              <div class="result-primary">
-                <span>This transaction</span>
-                <h3 id="addon-output">$1.00 added</h3>
-                <p id="addon-note">
-                  Helio adds $1.00 to a $42.80 transaction and routes it to SOL staking.
+                <p class="footer-caption">
+                    &copy; 2026 Helio. Crypto, auto-invested.
                 </p>
-              </div>
-
-              <div class="result-grid">
-                <div class="result-card">
-                  <span>Total before approval</span>
-                  <strong id="total-output">$43.80</strong>
-                </div>
-                <div class="result-card">
-                  <span>Projected monthly add-ons</span>
-                  <strong id="monthly-output">$360.00</strong>
-                </div>
-                <div class="result-card">
-                  <span>Estimated annual yield</span>
-                  <strong id="annual-output">$161.33</strong>
-                </div>
-              </div>
-
-              <div class="route-engine">
-                <div class="engine-header">
-                  <div>
-                    <span>Routing engine</span>
-                    <strong id="route-badge">SOL Staking</strong>
-                  </div>
-                  <span id="flow-apy">7.2% APY</span>
-                </div>
-
-                <div class="flow-list">
-                  <div class="flow-step">
-                    <span>Payment</span>
-                    <strong id="flow-spend">$42.80</strong>
-                  </div>
-                  <div class="flow-step">
-                    <span>Add-on</span>
-                    <strong id="flow-addon">$1.00</strong>
-                  </div>
-                  <div class="flow-step">
-                    <span>Total</span>
-                    <strong id="flow-total">$43.80</strong>
-                  </div>
-                </div>
-
-                <div class="projection-panel">
-                  <div>
-                    <span>Annual add-ons</span>
-                    <strong id="principal-output">$4,380.00</strong>
-                  </div>
-                  <div>
-                    <span>Projected 12 mo value</span>
-                    <strong id="portfolio-output">$4,541.33</strong>
-                  </div>
-                  <div>
-                    <span>Chosen route</span>
-                    <strong id="destination-copy">Stake with validators</strong>
-                  </div>
-                </div>
-
-                <p id="annual-note" class="simulator-footnote">
-                  Mock projection based on 7.2% APY and daily add-ons.
-                </p>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </footer>
 
-      <section class="feature-section section" id="features">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-label">Product</span>
-            <h2>Built like a modern wallet, not a side app.</h2>
-            <p>
-              Inspired by the best Solana wallet sites, Helio puts the wallet,
-              money movement, trading access, and security story up front.
-            </p>
-          </div>
-
-          <div class="feature-grid">
-            <article class="feature-card feature-large reveal">
-              <span>Trading</span>
-              <h3>Swap while your add-on keeps moving.</h3>
-              <p>
-                Keep Solana-native swaps fast and readable. The Helio add-on is
-                displayed as a separate line item before every approval.
-              </p>
-            </article>
-
-            <article class="feature-card reveal">
-              <span>Move Money</span>
-              <h3>Send, receive, and pay from one wallet.</h3>
-              <p>Payments stay familiar, with one clear add-on rule attached.</p>
-            </article>
-
-            <article class="feature-card feature-blue reveal">
-              <span>Automation</span>
-              <h3>Route capital without manual chores.</h3>
-              <p>Micro amounts compound into the selected strategy over time.</p>
-            </article>
-
-            <article class="feature-card reveal">
-              <span>Controls</span>
-              <h3>Default range with custom limits.</h3>
-              <p>Start from $0.50 to $2.00, then tune higher when you need it.</p>
-            </article>
-
-            <article class="feature-card feature-red reveal">
-              <span>Visibility</span>
-              <h3>No hidden transaction behavior.</h3>
-              <p>The add-on, route, and total are shown before the wallet signs.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="strategies-section section" id="strategies">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="section-label">Strategies</span>
-            <h2>Pick where the add-on goes.</h2>
-            <p>
-              Helio separates the wallet action from the growth destination, so
-              users can change strategy without changing how they transact.
-            </p>
-          </div>
-
-          <div class="strategy-grid">
-            <article
-              class="strategy-card active reveal"
-              data-destination-card="staking"
-              role="button"
-              tabindex="0"
-              aria-label="Select SOL Staking destination"
-            >
-              <div class="strategy-top">
-                <span class="strategy-icon">S</span>
-                <strong>7.2% APY</strong>
-              </div>
-              <h3>SOL Staking</h3>
-              <p>Native Solana exposure for users who want simple compounding.</p>
-              <small>Best fit: long-term SOL believers.</small>
-            </article>
-
-            <article
-              class="strategy-card reveal"
-              data-destination-card="vault"
-              role="button"
-              tabindex="0"
-              aria-label="Select USDC Vault destination"
-            >
-              <div class="strategy-top">
-                <span class="strategy-icon">U</span>
-                <strong>4.8% APY</strong>
-              </div>
-              <h3>USDC Vault</h3>
-              <p>A steadier route for add-ons users do not want exposed to SOL volatility.</p>
-              <small>Best fit: reserve builders.</small>
-            </article>
-
-            <article
-              class="strategy-card reveal"
-              data-destination-card="index"
-              role="button"
-              tabindex="0"
-              aria-label="Select Crypto Index destination"
-            >
-              <div class="strategy-top">
-                <span class="strategy-icon">I</span>
-                <strong>11.4% APY</strong>
-              </div>
-              <h3>Crypto Index</h3>
-              <p>Diversified basket exposure for users who want broader upside.</p>
-              <small>Best fit: higher-risk growth seekers.</small>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="security-section section" id="security">
-        <div class="container security-layout">
-          <div class="security-copy reveal">
-            <span class="section-label">Security</span>
-            <h2>Controlled by the user before every signature.</h2>
-            <p>
-              Helio should never make automation feel hidden. Every transaction
-              preview separates the base payment, network estimate, add-on amount,
-              destination, and final approval total.
-            </p>
-          </div>
-
-          <div class="security-list reveal">
-            <div>
-              <strong>Self-custody by design</strong>
-              <span>Helio does not need custody of user funds to route add-ons.</span>
-            </div>
-            <div>
-              <strong>Visible add-on line item</strong>
-              <span>The add-on appears before every signature, never after.</span>
-            </div>
-            <div>
-              <strong>Caps and pause controls</strong>
-              <span>Users can lower, pause, or reroute the add-on from wallet settings.</span>
-            </div>
-            <div>
-              <strong>Route clarity</strong>
-              <span>The selected destination is visible inside the wallet preview.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="waitlist-section section" id="waitlist">
-        <div class="container waitlist-layout reveal">
-          <div class="waitlist-copy">
-            <span class="section-label">Beta Access</span>
-            <h2>Install Helio and turn transaction flow into growth.</h2>
-            <p>
-              Join the beta list for the Helio extension. Product updates will
-              focus on wallet launch, routing destinations, and transaction
-              control settings.
-            </p>
-          </div>
-
-          <form class="waitlist-form" id="waitlist-form">
-            <label class="sr-only" for="waitlist-email">Email address</label>
-            <input
-              id="waitlist-email"
-              name="email"
-              type="email"
-              placeholder="Email address"
-              autocomplete="email"
-              required
-            />
-            <button class="button button-primary" type="submit">Join Beta</button>
-            <p class="form-caption">No spam. Early access and launch notes only.</p>
-            <p class="form-feedback" id="form-feedback" aria-live="polite"></p>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer">
-      <div class="container footer-layout">
-        <div class="footer-brand">
-          <a class="brand footer-logo" href="#home" aria-label="Helio home">
-            <img
-              class="brand-logo-img"
-              src="Assets/full-logo-transparent.png"
-              alt="Helio"
-              width="1089"
-              height="433"
-            />
-          </a>
-          <p>Solana wallet automation for small transaction add-ons.</p>
-        </div>
-
-        <div class="footer-links" aria-label="Footer navigation">
-          <a href="#wallet">Wallet</a>
-          <a href="#simulator">Simulator</a>
-          <a href="#strategies">Strategies</a>
-          <a href="#security">Security</a>
-        </div>
-
-        <p class="footer-caption">&copy; 2026 Helio. Add a little. Grow every transaction.</p>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+        <script src="script.js"></script>
+    </body>
 </html>
