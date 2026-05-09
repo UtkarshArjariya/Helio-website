@@ -276,28 +276,20 @@ svg {
     margin-top: -82px;
     padding: 150px 0 72px;
     background:
-        linear-gradient(
-            90deg,
+        linear-gradient(90deg,
             rgba(3, 3, 3, 0.98) 0%,
             rgba(3, 3, 3, 0.78) 46%,
-            rgba(3, 3, 3, 0.82) 100%
-        ),
+            rgba(3, 3, 3, 0.82) 100%),
         url("Assets/twitter-banner.jpg") center / cover no-repeat,
-        radial-gradient(
-            circle at 18% 14%,
+        radial-gradient(circle at 18% 14%,
             rgba(198, 240, 0, 0.18),
-            transparent 24%
-        ),
-        radial-gradient(
-            circle at 84% 20%,
+            transparent 24%),
+        radial-gradient(circle at 84% 20%,
             rgba(47, 125, 255, 0.24),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 72% 80%,
+            transparent 28%),
+        radial-gradient(circle at 72% 80%,
             rgba(122, 44, 255, 0.22),
-            transparent 22%
-        ),
+            transparent 22%),
         var(--black);
     background-position:
         center,
@@ -320,12 +312,10 @@ svg {
         linear-gradient(rgba(255, 255, 255, 0.048) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.048) 1px, transparent 1px);
     background-size: 64px 64px;
-    mask-image: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.95),
-        rgba(0, 0, 0, 0.55) 78%,
-        transparent 100%
-    );
+    mask-image: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 0, 0, 0.55) 78%,
+            transparent 100%);
     opacity: 0.82;
     pointer-events: none;
     animation: gridDrift 16s linear infinite;
@@ -670,23 +660,16 @@ h2 mark {
     margin: 8px 0 12px;
     border-radius: 16px;
     background:
-        radial-gradient(
-            circle at 18% 70%,
+        radial-gradient(circle at 18% 70%,
             rgba(198, 240, 0, 0.35) 0 2px,
-            transparent 3px
-        ),
-        radial-gradient(
-            circle at 40% 50%,
+            transparent 3px),
+        radial-gradient(circle at 40% 50%,
             rgba(198, 240, 0, 0.35) 0 2px,
-            transparent 3px
-        ),
-        radial-gradient(
-            circle at 68% 30%,
+            transparent 3px),
+        radial-gradient(circle at 68% 30%,
             rgba(198, 240, 0, 0.35) 0 2px,
-            transparent 3px
-        ),
-        linear-gradient(
-            145deg,
+            transparent 3px),
+        linear-gradient(145deg,
             transparent 14%,
             rgba(198, 240, 0, 0.18) 14% 16%,
             transparent 16% 30%,
@@ -695,8 +678,7 @@ h2 mark {
             rgba(198, 240, 0, 0.24) 46% 48%,
             transparent 48% 62%,
             rgba(198, 240, 0, 0.28) 62% 64%,
-            transparent 64%
-        );
+            transparent 64%);
 }
 
 .stat-card,
@@ -709,10 +691,10 @@ h2 mark {
     background: rgba(0, 0, 0, 0.055);
 }
 
-.stat-card + .stat-card,
-.invest-card + .invest-card,
-.mock-line + .mock-line,
-.mock-route + .mock-route {
+.stat-card+.stat-card,
+.invest-card+.invest-card,
+.mock-line+.mock-line,
+.mock-route+.mock-route {
     margin-top: 9px;
 }
 
@@ -999,7 +981,7 @@ h2 mark {
     color: var(--white);
 }
 
-.wallet-card + .wallet-card {
+.wallet-card+.wallet-card {
     margin-top: 10px;
 }
 
@@ -1196,20 +1178,16 @@ h2 mark {
         linear-gradient(rgba(198, 240, 0, 0.14) 1px, transparent 1px),
         linear-gradient(90deg, rgba(198, 240, 0, 0.14) 1px, transparent 1px);
     background-size: 72px 72px;
-    -webkit-mask-image: linear-gradient(
-        135deg,
-        transparent 0%,
-        rgba(0, 0, 0, 0.9) 30%,
-        rgba(0, 0, 0, 0.9) 70%,
-        transparent 100%
-    );
-    mask-image: linear-gradient(
-        135deg,
-        transparent 0%,
-        rgba(0, 0, 0, 0.9) 30%,
-        rgba(0, 0, 0, 0.9) 70%,
-        transparent 100%
-    );
+    -webkit-mask-image: linear-gradient(135deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.9) 30%,
+            rgba(0, 0, 0, 0.9) 70%,
+            transparent 100%);
+    mask-image: linear-gradient(135deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.9) 30%,
+            rgba(0, 0, 0, 0.9) 70%,
+            transparent 100%);
     -webkit-mask-size: 280% 280%;
     mask-size: 280% 280%;
     animation: gridDraw 6s linear infinite;
@@ -1316,11 +1294,15 @@ h2 mark {
     color: var(--muted-dark);
 }
 
+.simulator-section h2 mark {
+    color: var(--black);
+}
+
 .simulator-tool {
     display: grid;
     grid-template-columns: minmax(300px, 0.7fr) minmax(0, 1.3fr);
     gap: 18px;
-    margin-top: 30px;
+    margin-top: 48px;
 }
 
 .simulator-controls,
@@ -1408,8 +1390,7 @@ input[type="range"] {
     height: 7px;
     border-radius: 999px;
     background:
-        linear-gradient(var(--lime), var(--lime)) 0 / var(--slider-progress, 0%)
-            100% no-repeat,
+        linear-gradient(var(--lime), var(--lime)) 0 / var(--slider-progress, 0%) 100% no-repeat,
         rgba(255, 255, 255, 0.2);
     appearance: none;
     outline: none;
@@ -1623,7 +1604,7 @@ input[type="range"]::-moz-range-thumb {
     font-size: 1.22rem;
 }
 
-.engine-header > span {
+.engine-header>span {
     padding: 9px 11px;
     border-radius: 999px;
     background: var(--lime);
@@ -1640,7 +1621,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 .flow-step,
-.projection-panel > div {
+.projection-panel>div {
     padding: 15px;
     border: 1px solid var(--line-dark);
     border-radius: 18px;
@@ -1816,11 +1797,9 @@ input[type="range"]::-moz-range-thumb {
     padding: 42px;
     border-radius: 34px;
     background:
-        radial-gradient(
-            circle at 95% 12%,
+        radial-gradient(circle at 95% 12%,
             rgba(198, 240, 0, 0.32),
-            transparent 24%
-        ),
+            transparent 24%),
         var(--black);
     color: var(--white);
 }
@@ -1991,6 +1970,7 @@ input[type="range"]::-moz-range-thumb {
         -webkit-mask-position: 150% -50%;
         mask-position: 150% -50%;
     }
+
     100% {
         -webkit-mask-position: -50% 150%;
         mask-position: -50% 150%;
@@ -1998,6 +1978,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes mascotFloat {
+
     0%,
     100% {
         opacity: 0.2;
@@ -2011,6 +1992,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @media (max-width: 1120px) {
+
     .hero-layout,
     .auto-invest-layout,
     .section-heading,
