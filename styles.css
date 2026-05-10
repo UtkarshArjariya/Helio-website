@@ -340,10 +340,10 @@ svg {
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 0.94fr) minmax(540px, 1.06fr);
+    grid-template-columns: minmax(0, 0.94fr) minmax(580px, 1.06fr);
     align-items: center;
     gap: 120px;
-    min-height: 730px;
+    min-height: 760px;
 }
 
 .hero-copy {
@@ -412,6 +412,10 @@ svg {
     color: var(--white);
 }
 
+.hero h1 .hero-accent {
+    color: var(--lime);
+}
+
 h2 mark {
     background: var(--lime);
     color: var(--black);
@@ -446,7 +450,7 @@ h2 mark {
 
 .hero-showcase {
     position: relative;
-    min-height: 680px;
+    min-height: 720px;
 }
 
 .glow-orb {
@@ -484,9 +488,10 @@ h2 mark {
 
 .phone {
     position: absolute;
-    width: 252px;
-    min-height: 520px;
-    padding: 22px 18px;
+    width: 290px;
+    min-height: 590px;
+    padding: 24px 20px;
+    border-radius: 38px;
     background: #050505;
     color: var(--white);
     font-family: "Satoshi", "Inter", sans-serif;
@@ -505,17 +510,17 @@ h2 mark {
 
 .phone-onboarding {
     left: 0;
-    top: 70px;
+    top: 56px;
     z-index: 3;
     transform: rotate(-2.5deg);
 }
 
 .phone-home {
-    left: 238px;
-    top: 6px;
+    left: 252px;
+    top: 0;
     z-index: 4;
-    width: 266px;
-    min-height: 570px;
+    width: 305px;
+    min-height: 615px;
     transform: rotate(1.5deg);
 }
 
