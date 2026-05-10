@@ -348,35 +348,8 @@ svg {
     justify-items: start;
 }
 
-.eyebrow,
-.section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 9px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.13);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.78);
-    font-family: "General Sans", "Inter", sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-}
-
-.eyebrow-dot {
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--lime);
-    box-shadow: 0 0 18px rgba(198, 240, 0, 0.9);
-}
-
 .hero h1,
-.section-heading h2,
-.security-copy h2,
-.waitlist-copy h2 {
+.section-heading h2 {
     margin: 22px 0 0;
     max-width: 9.5ch;
     font-size: clamp(4.3rem, 8vw, 7.3rem);
@@ -391,9 +364,7 @@ svg {
 }
 
 /* Section headings use Sora for modern premium feel */
-.section-heading h2,
-.security-copy h2,
-.waitlist-copy h2 {
+.section-heading h2 {
     font-family: "Sora", "Space Grotesk", sans-serif;
 }
 
@@ -422,9 +393,7 @@ h2 mark {
 }
 
 .hero-subhead,
-.section-heading p,
-.security-copy p,
-.waitlist-copy p {
+.section-heading p {
     width: 100%;
     max-width: 620px;
     margin: 26px 0 0;
@@ -637,8 +606,7 @@ h2 mark {
     color: rgba(0, 0, 0, 0.58);
 }
 
-.phone-home h3,
-.phone-invest h3 {
+.phone-home h3 {
     margin: 4px 0 0;
     font-family: "Space Grotesk", "Satoshi", sans-serif;
     font-size: 2.1rem;
@@ -646,8 +614,7 @@ h2 mark {
     letter-spacing: -0.035em;
 }
 
-.phone-home .gain,
-.phone-invest small {
+.phone-home .gain {
     display: block;
     margin-top: 6px;
     color: #18a836;
@@ -777,40 +744,6 @@ h2 mark {
     color: var(--lime);
 }
 
-.dark-panel {
-    background: var(--black);
-    color: var(--white);
-}
-
-.back-row {
-    justify-content: flex-start;
-    font-size: 0.88rem;
-    font-weight: 400;
-}
-
-.phone-invest .invest-card {
-    margin-top: 16px;
-    border: 1px solid var(--line-dark);
-    background: rgba(255, 255, 255, 0.07);
-}
-
-.invest-card span,
-.dark-panel p,
-.dark-panel .mock-line span {
-    color: var(--muted-dark);
-}
-
-.strategy-row,
-.vault-card div {
-    margin-top: 10px;
-    font-size: 0.82rem;
-}
-
-.strategy-row b,
-.vault-card b {
-    color: var(--lime);
-}
-
 .progress {
     height: 9px;
     margin-top: 12px;
@@ -859,25 +792,14 @@ h2 mark {
     color: var(--muted);
 }
 
-.section-heading .section-label {
-    grid-column: 1 / -1;
-    width: max-content;
-    border-color: rgba(0, 0, 0, 0.1);
-    background: var(--black);
-    color: var(--white);
-}
-
-.section-heading h2,
-.security-copy h2,
-.waitlist-copy h2 {
+.section-heading h2 {
     max-width: 16ch;
     font-size: clamp(2.8rem, 5.1vw, 4.9rem);
     line-height: 1.04;
     color: var(--ink);
 }
 
-.section-heading p,
-.waitlist-copy p {
+.section-heading p {
     align-self: start;
     margin-top: 6px;
     color: var(--muted);
@@ -1211,12 +1133,6 @@ h2 mark {
     color: var(--muted-dark);
 }
 
-.auto-invest-section .section-label {
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--white);
-}
-
 .process-card {
     display: grid;
     grid-template-columns: minmax(190px, 0.56fr) 1fr;
@@ -1278,12 +1194,6 @@ h2 mark {
 .simulator-section {
     background: #080808;
     color: var(--white);
-}
-
-.simulator-section .section-label {
-    border-color: rgba(255, 255, 255, 0.12);
-    background: var(--lime);
-    color: var(--black);
 }
 
 .simulator-section .section-heading h2 {
@@ -2028,7 +1938,6 @@ input[type="range"]::-moz-range-thumb {
     .hero-layout,
     .auto-invest-layout,
     .section-heading,
-    .security-layout,
     .waitlist-layout {
         grid-template-columns: 1fr;
     }
@@ -2051,10 +1960,6 @@ input[type="range"]::-moz-range-thumb {
 
     .phone-home {
         left: 34%;
-    }
-
-    .phone-invest {
-        right: 2%;
     }
 
     .screen-gallery {
@@ -2091,7 +1996,6 @@ input[type="range"]::-moz-range-thumb {
         padding-top: 130px;
     }
 
-    .hero-metrics,
     .simulator-tool,
     .strategy-grid,
     .security-list,
@@ -2193,16 +2097,12 @@ input[type="range"]::-moz-range-thumb {
     }
 
     .hero h1,
-    .section-heading h2,
-    .security-copy h2,
-    .waitlist-copy h2 {
+    .section-heading h2 {
         font-size: 3.1rem;
     }
 
     .hero-subhead,
-    .section-heading p,
-    .security-copy p,
-    .waitlist-copy p {
+    .section-heading p {
         font-size: 1rem;
     }
 
@@ -2231,8 +2131,7 @@ input[type="range"]::-moz-range-thumb {
         transform: none;
     }
 
-    .phone-home,
-    .phone-invest {
+    .phone-home {
         min-height: 520px;
     }
 
