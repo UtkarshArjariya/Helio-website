@@ -1761,30 +1761,22 @@ input[type="range"]::-moz-range-thumb {
     color: var(--black);
 }
 
-.security-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(360px, 1fr);
-    gap: 54px;
-    align-items: start;
-}
-
-.security-copy .section-label {
-    background: var(--black);
-    color: var(--white);
-    border-color: var(--black);
-}
-
-.security-copy h2 {
+.security-section .section-heading h2 {
     color: var(--black);
 }
 
-.security-copy p {
+.security-section .section-heading p {
     color: rgba(0, 0, 0, 0.68);
 }
 
+.security-section h2 mark {
+    background: var(--black);
+    color: var(--lime);
+}
+
 .security-list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    margin-top: 0;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 48px;
 }
 
 .security-list div {
@@ -1815,10 +1807,9 @@ input[type="range"]::-moz-range-thumb {
 
 .waitlist-layout {
     display: grid;
-    grid-template-columns: minmax(0, 0.95fr) minmax(340px, 0.7fr);
-    gap: 44px;
-    align-items: center;
-    padding: 42px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 56px;
     border-radius: 34px;
     background:
         radial-gradient(circle at 95% 12%,
@@ -1828,23 +1819,24 @@ input[type="range"]::-moz-range-thumb {
     color: var(--white);
 }
 
-.waitlist-copy .section-label {
-    background: var(--lime);
-    color: var(--black);
-    border-color: var(--lime);
-}
-
-.waitlist-copy h2 {
+.waitlist-section .section-heading h2 {
     color: var(--white);
 }
 
-.waitlist-copy p {
+.waitlist-section .section-heading p {
     color: var(--muted-dark);
 }
 
 .waitlist-form {
     display: grid;
+    grid-template-columns: 1fr auto;
     gap: 12px;
+    max-width: 640px;
+}
+
+.waitlist-form .form-caption,
+.waitlist-form .form-feedback {
+    grid-column: 1 / -1;
 }
 
 .waitlist-form input {
@@ -2023,6 +2015,10 @@ input[type="range"]::-moz-range-thumb {
     .security-layout,
     .waitlist-layout {
         grid-template-columns: 1fr;
+    }
+
+    .security-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .hero-layout {
@@ -2236,7 +2232,11 @@ input[type="range"]::-moz-range-thumb {
     .simulator-controls,
     .simulator-results,
     .route-engine {
-        padding: 16px;
+        padding: 24px;
+    }
+
+    .waitlist-form {
+        grid-template-columns: 1fr;
     }
 
     .footer-layout {
