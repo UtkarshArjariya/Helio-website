@@ -1873,6 +1873,24 @@ input[type="range"]::-moz-range-thumb {
 
 .form-feedback {
     min-height: 1.35em;
+    transition: color 160ms ease;
+}
+
+.form-feedback.is-success {
+    color: var(--lime);
+}
+
+.form-feedback.is-error {
+    color: #ff8585;
+}
+
+.honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .site-footer {

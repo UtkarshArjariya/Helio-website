@@ -1,3 +1,6 @@
+const WAITLIST_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbxA6_5hBlWHpelf_yZXCHPspbtUCDJM5_KT71ONy-CQGjdO10d3V0cd1X52GGlA7E9b/exec";
+
 const destinations = {
   highest: {
     name: "Highest APY Strategy",
@@ -274,19 +277,63 @@ destinationCards.forEach((card) => {
   });
 });
 
-waitlistForm?.addEventListener("submit", (event) => {
+function setFeedback(message, kind) {
+  if (!feedback) return;
+  feedback.textContent = message;
+  feedback.classList.remove("is-success", "is-error");
+  if (kind === "success") feedback.classList.add("is-success");
+  if (kind === "error") feedback.classList.add("is-error");
+}
+
+waitlistForm?.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   const formData = new FormData(waitlistForm);
   const email = String(formData.get("email") || "").trim();
+  const honeypot = String(formData.get("website") || "").trim();
 
   if (!email) {
-    setText(feedback, "Enter an email address to join the Helio beta.");
+    setFeedback("Enter an email address to join the Helio beta.", "error");
     return;
   }
 
-  setText(feedback, `You're on the list, ${email}. We'll send Helio beta access soon.`);
-  waitlistForm.reset();
+  const submitBtn = waitlistForm.querySelector('button[type="submit"]');
+  const originalLabel = submitBtn.textContent.trim();
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Joining…";
+  setFeedback("", null);
+
+  try {
+    const body = new URLSearchParams();
+    body.append("email", email);
+    body.append("website", honeypot);
+    body.append("source", "helio-landing");
+    body.append("userAgent", navigator.userAgent);
+
+    const res = await fetch(WAITLIST_ENDPOINT, {
+      method: "POST",
+      body,
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      if (data.duplicate) {
+        setFeedback("You're already on the list. We'll be in touch.", "success");
+      } else {
+        setFeedback("You're in. Helio beta access will land in your inbox.", "success");
+      }
+      waitlistForm.reset();
+    } else if (data.error === "invalid_email") {
+      setFeedback("Please enter a valid email address.", "error");
+    } else {
+      setFeedback("Something went wrong. Please try again.", "error");
+    }
+  } catch (err) {
+    setFeedback("Network error. Please try again in a moment.", "error");
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = originalLabel;
+  }
 });
 
 const revealObserver = "IntersectionObserver" in window
