@@ -1305,6 +1305,30 @@ h2 mark {
     margin-top: 48px;
 }
 
+.sim-tab-bar,
+.sim-live-summary {
+    display: none;
+}
+
+.sim-tab {
+    flex: 1;
+    min-height: 44px;
+    border: 0;
+    border-radius: 15px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.58);
+    font-family: "General Sans", "Inter", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.sim-tab.active {
+    background: var(--lime);
+    color: var(--black);
+}
+
 .simulator-controls,
 .simulator-results,
 .route-engine {
@@ -2072,6 +2096,59 @@ input[type="range"]::-moz-range-thumb {
 
     .simulator-controls {
         position: static;
+    }
+
+    .sim-tab-bar {
+        display: flex;
+        grid-column: 1 / -1;
+        gap: 5px;
+        padding: 5px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid var(--line-dark);
+        border-radius: 20px;
+    }
+
+    .sim-live-summary {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        grid-column: 1 / -1;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--line-dark);
+        border-radius: 16px;
+        font-size: 0.9rem;
+    }
+
+    #summary-addon {
+        color: var(--lime);
+        font-weight: 600;
+    }
+
+    .sim-dot {
+        color: rgba(255, 255, 255, 0.28);
+    }
+
+    #summary-monthly {
+        color: rgba(255, 255, 255, 0.72);
+        font-weight: 500;
+    }
+
+    .simulator-tool[data-sim-tab="configure"] .simulator-results { display: none; }
+    .simulator-tool[data-sim-tab="results"] .simulator-controls { display: none; }
+
+    .simulator-results .extension-preview-card { display: none; }
+
+    .simulator-results {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .result-grid {
+        display: grid;
+        grid-template-columns: 1fr;
     }
 }
 

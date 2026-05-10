@@ -328,7 +328,16 @@
                         </p>
                     </div>
 
-                    <div class="simulator-tool">
+                    <div class="simulator-tool" data-sim-tab="configure">
+                        <div class="sim-tab-bar">
+                            <button class="sim-tab active" data-tab="configure" type="button">Configure</button>
+                            <button class="sim-tab" data-tab="results" type="button">Results</button>
+                        </div>
+                        <div class="sim-live-summary">
+                            <span id="summary-addon">$2.50 invested</span>
+                            <span class="sim-dot">·</span>
+                            <span id="summary-monthly">$900.00/mo projected</span>
+                        </div>
                         <div class="simulator-controls reveal">
                             <div class="control-group">
                                 <label for="transaction-amount"

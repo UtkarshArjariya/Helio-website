@@ -55,6 +55,10 @@ const mockupAddon = document.querySelector("#mockup-addon");
 const mockupTotal = document.querySelector("#mockup-total");
 const mockupRoute = document.querySelector("#mockup-route");
 const mockupMonthly = document.querySelector("#mockup-monthly");
+const summaryAddon = document.querySelector("#summary-addon");
+const summaryMonthly = document.querySelector("#summary-monthly");
+const simTool = document.querySelector(".simulator-tool");
+const simTabButtons = document.querySelectorAll(".sim-tab");
 
 const amountMin = Math.max(
   Number(amountInput?.min || 0.01),
@@ -189,6 +193,9 @@ function renderSimulator() {
   setText(mockupRoute, destination.name);
   setText(mockupMonthly, formatCurrency(monthlyContribution));
 
+  setText(summaryAddon, `${formatCurrency(autoInvestAmount)} invested`);
+  setText(summaryMonthly, `${formatCurrency(monthlyContribution)}/mo projected`);
+
   updateActiveState(addOnButtons, String(rate), "addon");
   updateActiveState(destinationButtons, state.destination, "destination");
   updateActiveState(destinationCards, state.destination, "destinationCard");
@@ -233,6 +240,20 @@ destinationButtons.forEach((button) => {
   button.addEventListener("click", () => {
     state.destination = button.dataset.destination;
     renderSimulator();
+  });
+});
+
+simTabButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const tab = button.dataset.tab;
+    simTool?.setAttribute("data-sim-tab", tab);
+    simTabButtons.forEach((btn) => {
+      btn.classList.toggle("active", btn.dataset.tab === tab);
+    });
+    // IntersectionObserver never fires for display:none elements, so manually
+    // ensure both panels are revealed once the user interacts with the tabs.
+    simTool?.querySelector(".simulator-controls")?.classList.add("is-visible");
+    simTool?.querySelector(".simulator-results")?.classList.add("is-visible");
   });
 });
 
