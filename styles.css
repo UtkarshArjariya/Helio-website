@@ -2135,10 +2135,17 @@ input[type="range"]::-moz-range-thumb {
         font-weight: 500;
     }
 
-    .simulator-tool[data-sim-tab="configure"] .simulator-results { display: none; }
-    .simulator-tool[data-sim-tab="results"] .simulator-controls { display: none; }
+    .simulator-tool[data-sim-tab="configure"] .simulator-results {
+        display: none;
+    }
 
-    .simulator-results .extension-preview-card { display: none; }
+    .simulator-tool[data-sim-tab="results"] .simulator-controls {
+        display: none;
+    }
+
+    .simulator-results .extension-preview-card {
+        display: none;
+    }
 
     .simulator-results {
         display: flex;
